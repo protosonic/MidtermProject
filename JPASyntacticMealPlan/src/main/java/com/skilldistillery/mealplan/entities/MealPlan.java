@@ -1,7 +1,11 @@
 package com.skilldistillery.mealplan.entities;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,10 +37,12 @@ public class MealPlan {
 	private String imageUrl;
 	
 	@Column(name="date_created")
-	private LocalDate dateCreated;
+	@CreationTimestamp
+	private LocalDateTime dateCreated;
 	
 	@Column(name="date_updated")
-	private LocalDate dateUpdated;
+	@UpdateTimestamp
+	private LocalDateTime dateUpdated;
 	
 	private Boolean published;
 
@@ -117,19 +123,19 @@ public class MealPlan {
 		this.imageUrl = imageUrl;
 	}
 
-	public LocalDate getDateCreated() {
+	public LocalDateTime getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(LocalDate dateCreated) {
+	public void setDateCreated(LocalDateTime dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
-	public LocalDate getDateUpdated() {
+	public LocalDateTime getDateUpdated() {
 		return dateUpdated;
 	}
 
-	public void setDateUpdated(LocalDate dateUpdated) {
+	public void setDateUpdated(LocalDateTime dateUpdated) {
 		this.dateUpdated = dateUpdated;
 	}
 

@@ -3,6 +3,9 @@ package com.skilldistillery.mealplan.entities;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,11 +26,13 @@ public class Recipe {
  private String imageURL;
  
  @Column(name="date_created")
+ @CreationTimestamp
  private LocalDateTime dateCreated;
  
  private String directions;
  
  @Column(name="date_updated")
+ @UpdateTimestamp
  private LocalDateTime dateUpdated;
  
  private Boolean enabled;

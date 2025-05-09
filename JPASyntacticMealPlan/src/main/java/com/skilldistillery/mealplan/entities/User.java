@@ -3,6 +3,8 @@ package com.skilldistillery.mealplan.entities;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +29,7 @@ public class User {
 	private String lastName;
 	private String biography;
 	@Column(name="date_created")
+	@CreationTimestamp
 	private LocalDateTime dateCreated;
 	@Column(name="profile_image_url")
 	private String profileImageUrl;
