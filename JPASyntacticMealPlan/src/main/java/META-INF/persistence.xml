@@ -8,9 +8,9 @@
 
 
     <properties>
-      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sdvid" />
-      <property name="jakarta.persistence.jdbc.user" value="student"/>
-      <property name="jakarta.persistence.jdbc.password" value="student" />
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mealplandb" />
+      <property name="jakarta.persistence.jdbc.user" value="mealplanuser"/>
+      <property name="jakarta.persistence.jdbc.password" value="mealplanuser" />
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
 
       <property name="hibernate.show_sql" value="false" />
