@@ -328,11 +328,81 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `recipe`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mealplandb`;
+INSERT INTO `recipe` (`id`, `name`, `ingredients`, `image_url`, `date_created`, `directions`, `date_updated`, `enabled`, `user_id`, `notes`, `published`) VALUES (1, 'Chicken Enchiladas', 'Chicken', NULL, '2025-02-11', 'Put in oven', NULL, NULL, 1, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `meal_plan`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mealplandb`;
+INSERT INTO `meal_plan` (`id`, `user_id`, `name`, `enabled`, `description`, `notes`, `image_url`, `date_created`, `date_updated`, `published`) VALUES (1, 1, 'Meal Plan 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `recipe_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mealplandb`;
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `comment`, `enabled`, `date_created`, `user_id`, `in_reply_to_id`) VALUES (1, 1, NULL, NULL, NULL, 1, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `allergen`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mealplandb`;
+INSERT INTO `allergen` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Gluten-free', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `meal_time`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mealplandb`;
 INSERT INTO `meal_time` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Breakfast', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `diet`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mealplandb`;
+INSERT INTO `diet` (`id`, `name`, `description`, `image_url`) VALUES (1, 'Vegan', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `recipe_image`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mealplandb`;
+INSERT INTO `recipe_image` (`id`, `image_url`, `date_created`, `caption`, `recipe_id`) VALUES (DEFAULT, NULL, NULL, NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `recipe_rating`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mealplandb`;
+INSERT INTO `recipe_rating` (`recipe_id`, `user_id`, `rating`, `remark`, `date_created`) VALUES (1, 1, NULL, NULL, NULL);
 
 COMMIT;
 
