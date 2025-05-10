@@ -1,5 +1,6 @@
 package com.skilldistillery.mealplan.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Allergen {
@@ -21,6 +25,12 @@ public class Allergen {
 	
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	@ManyToMany
+	@JoinTable(name = "recipe_allergen", joinColumns = @JoinColumn(name = "allergen_id"), 
+	inverseJoinColumns = @JoinColumn(name = "recipe_id"))
+	private List<Recipe> allergenRecipes;
+
 
 	public Allergen() {
 		super();
@@ -75,6 +85,14 @@ public class Allergen {
 		this.imageUrl = imageUrl;
 	}
 
+	public List<Recipe> getAllergenRecipes() {
+		return allergenRecipes;
+	}
+	
+	public void setAllergenRecipes(List<Recipe> allergenRecipes) {
+		this.allergenRecipes = allergenRecipes;
+	}
+	
 	@Override
 	public String toString() {
 		return "Allergen [id=" + id + ", name=" + name + ", description=" + description + ", imageUrl=" + imageUrl

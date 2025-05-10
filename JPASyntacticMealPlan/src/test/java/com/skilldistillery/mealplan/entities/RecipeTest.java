@@ -47,10 +47,24 @@ class RecipeTest {
 	}
 	
 	@Test
+	void test_Recipe_MealTime_ManyToMany_mapping() {
+		assertNotNull(recipe);
+		assertNotNull(recipe.getRecipeMealTimes());
+	}
+	
+	@Test
 	void test_Recipe_Diet_ManyToMany_mapping() {
 		assertNotNull(recipe);
 		assertNotNull(recipe.getRecipeDiets());
 	}
+	
+	@Test
+	void test_Recipe_Allergen_ManyToMany_mapping() {
+		assertNotNull(recipe);
+		assertNotNull(recipe.getRecipeAllergens());
+	}
+	
+	
 	
 
 }

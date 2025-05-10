@@ -50,7 +50,6 @@ class MealPlanTest {
 	void test_MealPlan_Recipe_ManyToMany_mapping() {
 		assertNotNull(mealPlan);
 		assertNotNull(mealPlan.getRecipes());
-		//TODO ask anthony why this returns false
 		assertTrue(mealPlan.getRecipes().size() > 0);
 	}
 
