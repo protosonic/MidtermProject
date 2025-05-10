@@ -41,9 +41,15 @@ class RecipeTest {
 	}
 
 	@Test
-	void test_User_entity_mapping() {
+	void test_Recipe_entity_mapping() {
 		assertNotNull(recipe);
 		assertNotNull(recipe.getName());
+	}
+	
+	@Test
+	void test_Recipe_Diet_ManyToMany_mapping() {
+		assertNotNull(recipe);
+		assertNotNull(recipe.getRecipeDiets());
 	}
 	
 

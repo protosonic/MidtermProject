@@ -52,6 +52,9 @@ public class Recipe {
  
  @ManyToMany(mappedBy = "recipes")
  private List<MealTime> mealTime;
+ 
+ @ManyToMany(mappedBy = "dietRecipes")
+ private List<Diet> recipeDiets;
 
 public List<MealPlan> getMealPlans() {
 	return mealPlans;
@@ -159,6 +162,14 @@ public Boolean getPublished() {
 
 public void setPublished(Boolean published) {
 	this.published = published;
+}
+
+public List<Diet> getRecipeDiets() {
+	return recipeDiets;
+}
+
+public void setRecipeDiets(List<Diet> recipeDiets) {
+	this.recipeDiets = recipeDiets;
 }
 
 @Override
