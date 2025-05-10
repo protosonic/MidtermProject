@@ -49,6 +49,25 @@ public class Recipe {
  
  @ManyToMany(mappedBy = "recipes")
 	private List<MealPlan> mealPlans;
+ 
+ @ManyToMany(mappedBy = "recipes")
+ private List<MealTime> mealTime;
+
+public List<MealPlan> getMealPlans() {
+	return mealPlans;
+}
+
+public void setMealPlans(List<MealPlan> mealPlans) {
+	this.mealPlans = mealPlans;
+}
+
+public List<MealTime> getMealTime() {
+	return mealTime;
+}
+
+public void setMealTime(List<MealTime> mealTime) {
+	this.mealTime = mealTime;
+}
 
 public Recipe() {
 	super();

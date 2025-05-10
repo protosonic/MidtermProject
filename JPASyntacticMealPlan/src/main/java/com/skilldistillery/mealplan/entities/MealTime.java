@@ -1,5 +1,6 @@
 package com.skilldistillery.mealplan.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -7,6 +8,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,9 +27,22 @@ public class MealTime {
 	
 	@Column(name="image_url")
 	private String imageUrl;
+	
+	@ManyToMany
+	@JoinTable(name = "recipe_meal_time", joinColumns = @JoinColumn(name = "meal_time_id"), 
+	inverseJoinColumns = @JoinColumn(name = "recipe_id"))
+	private List<Recipe> recipes;
 
 	public MealTime() {
 		super();
+	}
+
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
 	}
 
 	@Override
@@ -82,7 +99,5 @@ public class MealTime {
 		return "MealTime [id=" + id + ", name=" + name + ", description=" + description + ", imageUrl=" + imageUrl
 				+ "]";
 	}
-	
-	
-
 }
+	
