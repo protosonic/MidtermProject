@@ -342,7 +342,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mealplandb`;
-INSERT INTO `meal_plan` (`id`, `user_id`, `name`, `enabled`, `description`, `notes`, `image_url`, `date_created`, `date_updated`, `published`) VALUES (1, 1, 'Meal Plan 1', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `meal_plan` (`id`, `user_id`, `name`, `enabled`, `description`, `notes`, `image_url`, `date_created`, `date_updated`, `published`) VALUES (1, 1, 'Meal Plan 1', 1, 'description', 'notes', 'imageurl', NULL, NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `recipe_has_meal_plan`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mealplandb`;
+INSERT INTO `recipe_has_meal_plan` (`recipe_id`, `meal_plan_id`) VALUES (1, 1);
 
 COMMIT;
 
@@ -378,6 +388,26 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `recipe_allergen`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mealplandb`;
+INSERT INTO `recipe_allergen` (`recipe_id`, `allergen_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `recipe_meal_time`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mealplandb`;
+INSERT INTO `recipe_meal_time` (`recipe_id`, `meal_time_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `diet`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -388,11 +418,21 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `recipe_diet`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `mealplandb`;
+INSERT INTO `recipe_diet` (`recipe_id`, `diet_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `recipe_image`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mealplandb`;
-INSERT INTO `recipe_image` (`id`, `image_url`, `date_created`, `caption`, `recipe_id`) VALUES (DEFAULT, NULL, NULL, NULL, 1);
+INSERT INTO `recipe_image` (`id`, `image_url`, `date_created`, `caption`, `recipe_id`) VALUES (1, NULL, NULL, NULL, 1);
 
 COMMIT;
 
