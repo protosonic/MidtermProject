@@ -46,5 +46,12 @@ class MealTimeTest {
 		assertNotNull(mealTime.getName());
 	}
 	
+	@Test
+	void test_MealTime_Recipe_ManyToMany_mapping() {
+		assertNotNull(mealTime);
+		assertNotNull(mealTime.getRecipes());
+//		assertTrue(mealTime.getRecipes().size() > 0);
+		
+	}
 
 }
