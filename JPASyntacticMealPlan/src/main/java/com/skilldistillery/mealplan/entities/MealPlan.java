@@ -1,7 +1,8 @@
 package com.skilldistillery.mealplan.entities;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,6 +13,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -45,6 +49,11 @@ public class MealPlan {
 	private LocalDateTime dateUpdated;
 	
 	private Boolean published;
+	
+	@ManyToMany
+	@JoinTable(name = "recipe_has_meal_plan", joinColumns = @JoinColumn(name = "meal_plan_id"), 
+	inverseJoinColumns = @JoinColumn(name = "recipe_id"))
+	private List<Recipe> recipes;
 
 	public MealPlan() {
 		super();
@@ -145,6 +154,31 @@ public class MealPlan {
 
 	public void setPublished(Boolean published) {
 		this.published = published;
+	}
+
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
+	}
+	
+	public void addRecipe(Recipe recipe) {
+		if (recipes == null) {
+			recipes = new ArrayList<>();
+		}
+		if (!recipes.contains(recipe)) {
+			recipes.add(recipe);
+			recipe.addMealPlan(this);
+		}
+	}
+
+	public void removeRecipe(Recipe recipe) {
+		if (recipes != null && recipes.contains(recipe)) {
+			recipes.remove(recipe);
+			recipe.removeMealPlan(this);
+		}
 	}
 
 	@Override
