@@ -45,6 +45,10 @@ class AllergenTest {
 		assertNotNull(allergen);
 		assertNotNull(allergen.getName());
 	}
-	
+	@Test
+	void test_Allergen_Recipe_ManyToMany_mapping() {
+		assertNotNull(allergen);
+		assertNotNull(allergen.getAllergenRecipes());
+	}
 
 }

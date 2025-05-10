@@ -31,18 +31,18 @@ public class MealTime {
 	@ManyToMany
 	@JoinTable(name = "recipe_meal_time", joinColumns = @JoinColumn(name = "meal_time_id"), 
 	inverseJoinColumns = @JoinColumn(name = "recipe_id"))
-	private List<Recipe> recipes;
+	private List<Recipe> mealTimeRecipes;
 
 	public MealTime() {
 		super();
 	}
 
 	public List<Recipe> getRecipes() {
-		return recipes;
+		return mealTimeRecipes;
 	}
 
 	public void setRecipes(List<Recipe> recipes) {
-		this.recipes = recipes;
+		this.mealTimeRecipes = recipes;
 	}
 
 	@Override
