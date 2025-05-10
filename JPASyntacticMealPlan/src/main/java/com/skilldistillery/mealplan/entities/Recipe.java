@@ -1,6 +1,8 @@
 package com.skilldistillery.mealplan.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,6 +13,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Recipe {
@@ -43,6 +46,9 @@ public class Recipe {
  private String notes;
  
  private Boolean published;
+ 
+ @ManyToMany(mappedBy = "recipes")
+	private List<MealPlan> mealPlans;
 
 public Recipe() {
 	super();
@@ -151,6 +157,22 @@ public boolean equals(Object obj) {
 		return false;
 	Recipe other = (Recipe) obj;
 	return id == other.id;
+}
+public void addMealPlan(MealPlan mealPlan) {
+	if (mealPlans == null) {
+		mealPlans = new ArrayList<>();
+	}
+	if (!mealPlans.contains(mealPlan)) {
+		mealPlans.add(mealPlan);
+		mealPlan.addRecipe(this);
+	}
+}
+
+public void removeMealPlan(MealPlan mealPlan) {
+	if (mealPlans != null && mealPlans.contains(mealPlan)) {
+		mealPlans.remove(mealPlan);
+		mealPlan.removeRecipe(this);
+	}
 }
 
 @Override
