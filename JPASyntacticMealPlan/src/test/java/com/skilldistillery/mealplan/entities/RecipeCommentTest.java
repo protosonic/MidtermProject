@@ -45,5 +45,17 @@ class RecipeCommentTest {
 		assertNotNull(recipeComment);
 	}
 	
+	@Test
+	void test_RecipeCommemt_MTO_self_join_reply_mapping() {
+		assertNotNull(recipeComment.getReply());
+	}
+	
+	@Test
+	void test_Staff_OTM_self_join_supervisees_mapping() {
+		assertNotNull(recipeComment);
+		assertNotNull(recipeComment.getReplies());
+		assertTrue(recipeComment.getReplies().size() > 0);
+	}
+	
 
 }

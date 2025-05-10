@@ -69,6 +69,12 @@ class RecipeTest {
 		assertNotNull(recipe);
 	}
 	
+	@Test
+	void test_RecipeComment_OTM_mapping() {
+		assertNotNull(recipe);
+		assertNotNull(recipe.getRecipeComments());
+	}
+	
 	
 	
 
