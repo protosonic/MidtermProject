@@ -24,8 +24,8 @@ public class RecipeComment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "recipe_id")
-	private int recipeId;
+//	@Column(name = "recipe_id")
+//	private int recipeId;
 
 	private String comment;
 
@@ -46,7 +46,7 @@ public class RecipeComment {
 	private List<RecipeComment> replies;
 	
 	@ManyToOne
-	@JoinColumn(name = "RecipeComment")
+	@JoinColumn(name = "recipe_id")
 	private Recipe recipe;
 
 	public RecipeComment() {
@@ -78,13 +78,13 @@ public class RecipeComment {
 		this.id = id;
 	}
 
-	public int getRecipeId() {
-		return recipeId;
-	}
-
-	public void setRecipeId(int recipeId) {
-		this.recipeId = recipeId;
-	}
+//	public int getRecipeId() {
+//		return recipeId;
+//	}
+//
+//	public void setRecipeId(int recipeId) {
+//		this.recipeId = recipeId;
+//	}
 
 	public String getComment() {
 		return comment;
