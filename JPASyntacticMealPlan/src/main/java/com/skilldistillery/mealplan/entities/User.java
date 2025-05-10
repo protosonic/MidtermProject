@@ -1,6 +1,7 @@
 package com.skilldistillery.mealplan.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -10,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -19,20 +21,30 @@ public class User {
 	private int id;
 	
 	private String username;
+	
 	private String password;
 	
 	private Boolean enabled;
+	
 	private String role;
+	
 	@Column(name="first_name")
 	private String firstName;
+	
 	@Column(name="last_name")
 	private String lastName;
+	
 	private String biography;
+	
 	@Column(name="date_created")
 	@CreationTimestamp
 	private LocalDateTime dateCreated;
+	
 	@Column(name="profile_image_url")
 	private String profileImageUrl;
+	
+	@OneToMany(mappedBy="user")
+	private List<RecipeRating> recipeRatings;
 	
 	
 	public User() {
@@ -117,6 +129,14 @@ public class User {
 
 	public void setProfileImageUrl(String profileImageUrl) {
 		this.profileImageUrl = profileImageUrl;
+	}
+
+	public List<RecipeRating> getRecipeRatings() {
+		return recipeRatings;
+	}
+
+	public void setRecipeRatings(List<RecipeRating> recipeRatings) {
+		this.recipeRatings = recipeRatings;
 	}
 
 	@Override

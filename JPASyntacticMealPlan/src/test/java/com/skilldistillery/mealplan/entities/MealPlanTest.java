@@ -41,7 +41,7 @@ class MealPlanTest {
 	}
 
 	@Test
-	void test_User_entity_mapping() {
+	void test_MealPlan_entity_mapping() {
 		assertNotNull(mealPlan);
 		assertNotNull(mealPlan.getName());
 	}

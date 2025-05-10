@@ -64,6 +64,11 @@ class RecipeTest {
 		assertNotNull(recipe.getRecipeAllergens());
 	}
 	
+	@Test
+	void test_Recipe_RecipeRating_OneToMany_mapping() {
+		assertNotNull(recipe);
+	}
+	
 	
 	
 

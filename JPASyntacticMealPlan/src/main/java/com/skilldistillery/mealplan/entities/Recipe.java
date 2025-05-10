@@ -14,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Recipe {
@@ -58,6 +59,9 @@ public class Recipe {
 
 	@ManyToMany(mappedBy = "allergenRecipes")
 	private List<Allergen> recipeAllergens;
+	
+	@OneToMany(mappedBy="recipe")
+	private List<RecipeRating> recipeRatings;
 	
 	public Recipe() {
 		super();
@@ -181,6 +185,14 @@ public class Recipe {
 	
 	public void setRecipeAllergens(List<Allergen> recipeAllergens) {
 		this.recipeAllergens = recipeAllergens;
+	}
+
+	public List<RecipeRating> getRecipeRatings() {
+		return recipeRatings;
+	}
+
+	public void setRecipeRatings(List<RecipeRating> recipeRatings) {
+		this.recipeRatings = recipeRatings;
 	}
 
 	@Override

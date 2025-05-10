@@ -12,11 +12,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class UserTest {
+class RecipeRatingTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private RecipeRating rating;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,26 +31,21 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		RecipeRatingId rId = new RecipeRatingId();
+		rId.setRecipeId(2);
+		rId.setUserId(1);
+		rating = em.find(RecipeRating.class, rId);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		rating = null;
 	}
 
 	@Test
-	void test_User_entity_mapping() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
-		assertEquals("test", user.getPassword());
+	void test_RecipeRating_entity_mapping() {
+		assertNotNull(rating);
 	}
-	
-	@Test
-	void test_User_RecipeRating_OneToMany_mapping() {
-		assertNotNull(user);
-	}
-	
 
 }
