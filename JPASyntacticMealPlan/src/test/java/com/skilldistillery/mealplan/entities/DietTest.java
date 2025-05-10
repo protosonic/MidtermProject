@@ -46,5 +46,11 @@ class DietTest {
 		assertNotNull(diet.getName());
 	}
 	
+	@Test
+	void test_Diet_Recipe_ManyToMany_mapping() {
+		assertNotNull(diet);
+		assertNotNull(diet.getDietRecipes());
+	}
+	
 
 }
