@@ -41,7 +41,7 @@ class DietTest {
 	}
 
 	@Test
-	void test_User_entity_mapping() {
+	void test_Diet_entity_mapping() {
 		assertNotNull(diet);
 		assertNotNull(diet.getName());
 	}
