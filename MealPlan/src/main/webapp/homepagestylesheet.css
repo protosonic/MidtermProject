@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between; /* Or use other layout methods */
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+#search-bar {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+  margin-left: 10px;
+}
+
+#search-bar input {
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+}

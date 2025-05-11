@@ -1,5 +1,8 @@
 package com.skilldistillery.mealplan.data;
 
+import java.util.List;
+
+import com.skilldistillery.mealplan.entities.Recipe;
 import com.skilldistillery.mealplan.entities.User;
 
 public interface UserDAO {
@@ -8,5 +11,6 @@ public interface UserDAO {
 	User createAccountForUser(String usesrName, String passWord, 
 			String firstName, String lastName);
 	
-
+	Recipe findbyId(int recipeId);
+	List<Recipe> getList();
 }
