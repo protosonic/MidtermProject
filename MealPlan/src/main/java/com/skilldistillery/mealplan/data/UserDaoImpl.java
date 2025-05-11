@@ -32,4 +32,24 @@ public class UserDaoImpl implements UserDAO {
 		}
 		return user;
 	}
+
+	@Override
+	public User createAccountForUser(String userName, String passWord, String firstName, String lastName) {
+		User user = new User();
+		try {
+			user.setUsername(userName);
+			user.setPassword(passWord);
+			user.setFirstName(firstName);
+			user.setLastName(lastName);
+			
+			em.persist(user);
+		} catch (Exception e) {
+			System.err.println("invalid input");
+			e.printStackTrace();
+		}
+		
+		
+		return user;
+	}
+	
 }
