@@ -52,5 +52,11 @@ class MealPlanTest {
 		assertNotNull(mealPlan.getRecipes());
 		assertTrue(mealPlan.getRecipes().size() > 0);
 	}
+	
+	@Test
+	void test_MealPlan_User_MTO_mapping() {
+		assertNotNull(mealPlan);
+		assertNotNull(mealPlan.getUser());
+	}
 
 }

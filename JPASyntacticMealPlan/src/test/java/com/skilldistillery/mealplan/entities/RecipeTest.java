@@ -48,33 +48,50 @@ class RecipeTest {
 	
 	@Test
 	void test_Recipe_MealTime_ManyToMany_mapping() {
-		assertNotNull(recipe);
 		assertNotNull(recipe.getRecipeMealTimes());
+		assertTrue(recipe.getRecipeMealTimes().size() > 0);
 	}
 	
 	@Test
 	void test_Recipe_Diet_ManyToMany_mapping() {
-		assertNotNull(recipe);
 		assertNotNull(recipe.getRecipeDiets());
+		assertNotNull(recipe.getRecipeDiets().size() > 0);
 	}
 	
 	@Test
 	void test_Recipe_Allergen_ManyToMany_mapping() {
-		assertNotNull(recipe);
 		assertNotNull(recipe.getRecipeAllergens());
+		assertTrue(recipe.getRecipeAllergens().size() > 0);
 	}
 	
 	@Test
 	void test_Recipe_RecipeRating_OneToMany_mapping() {
-		assertNotNull(recipe);
+		assertNotNull(recipe.getRecipeRatings());
+		assertTrue(recipe.getRecipeRatings().size() > 0);
 	}
 	
 	@Test
-	void test_RecipeComment_OTM_mapping() {
-		assertNotNull(recipe);
+	void test_Recipe_RecipeComment_OTM_mapping() {
 		assertNotNull(recipe.getRecipeComments());
+		assertTrue(recipe.getRecipeComments().size() > 0);
 	}
 	
+	@Test
+	void test_Recipe_RecipeImage_OTM_mapping() {
+		assertNotNull(recipe.getRecipeImages());
+		assertTrue(recipe.getRecipeImages().size() > 0);
+	}
+	
+	@Test
+	void test_Recipe_User_MTO_mapping() {
+		assertNotNull(recipe.getUser());
+	}
+	
+	@Test
+	void test_Recipe_MealPlan_ManyToMany_mapping() {
+		assertNotNull(recipe.getMealPlans());
+		assertTrue(recipe.getMealPlans().size() > 0);
+	}
 	
 	
 

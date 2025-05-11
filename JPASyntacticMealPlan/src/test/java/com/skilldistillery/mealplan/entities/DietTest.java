@@ -50,6 +50,7 @@ class DietTest {
 	void test_Diet_Recipe_ManyToMany_mapping() {
 		assertNotNull(diet);
 		assertNotNull(diet.getDietRecipes());
+		assertTrue(diet.getDietRecipes().size() > 0);
 	}
 	
 

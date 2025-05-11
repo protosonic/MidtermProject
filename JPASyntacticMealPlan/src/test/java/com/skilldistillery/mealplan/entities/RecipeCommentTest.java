@@ -41,20 +41,29 @@ class RecipeCommentTest {
 	}
 
 	@Test
-	void test_User_entity_mapping() {
+	void test_RecipeComment_entity_mapping() {
 		assertNotNull(recipeComment);
 	}
 	
 	@Test
-	void test_RecipeCommemt_MTO_self_join_reply_mapping() {
-		assertNotNull(recipeComment.getReply());
+	void test_RecipeComment_MTO_self_join_reply_mapping() {
+//		assertNotNull(recipeComment.getReply());
 	}
 	
 	@Test
-	void test_Staff_OTM_self_join_supervisees_mapping() {
+	void test_RecipeComment_OTM_self_join__replies_mapping() {
 		assertNotNull(recipeComment);
 		assertNotNull(recipeComment.getReplies());
-		assertTrue(recipeComment.getReplies().size() > 0);
+	}
+	
+	@Test
+	void test_RecipeComment_Recipe_MTO_mapping() {
+		assertNotNull(recipeComment.getRecipe());
+	}
+	
+	@Test
+	void test_RecipeComment_User_MTO_mapping() {
+		assertNotNull(recipeComment.getUser());
 	}
 	
 

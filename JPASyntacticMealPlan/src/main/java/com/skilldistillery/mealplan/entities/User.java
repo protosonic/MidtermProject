@@ -46,10 +46,35 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<RecipeRating> recipeRatings;
 	
+	@OneToMany(mappedBy="user")
+	private List<MealPlan> mealPlans;
+	
+	@OneToMany(mappedBy="user")
+	private List<RecipeComment> recipeComments;
+	
+	@OneToMany(mappedBy="user")
+	private List<Recipe> recipes;
 	
 	public User() {
 		super();
 	}
+	
+	public List<RecipeComment> getRecipeComments() {
+		return recipeComments;
+	}
+
+	public void setRecipeComments(List<RecipeComment> recipeComments) {
+		this.recipeComments = recipeComments;
+	}
+
+	public List<MealPlan> getMealPlans() {
+		return mealPlans;
+	}
+
+	public void setMealPlans(List<MealPlan> mealPlans) {
+		this.mealPlans = mealPlans;
+	}
+
 
 	public int getId() {
 		return id;
@@ -137,6 +162,14 @@ public class User {
 
 	public void setRecipeRatings(List<RecipeRating> recipeRatings) {
 		this.recipeRatings = recipeRatings;
+	}
+
+	public List<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(List<Recipe> recipes) {
+		this.recipes = recipes;
 	}
 
 	@Override

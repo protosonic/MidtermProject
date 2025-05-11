@@ -13,7 +13,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -41,8 +43,8 @@ public class Recipe {
 
 	private Boolean enabled;
 
-	@Column(name = "user_id")
-	private int userId;
+//	@Column(name = "user_id")
+//	private int userId;
 
 	private String notes;
 
@@ -65,6 +67,13 @@ public class Recipe {
 	
 	@OneToMany(mappedBy="recipe")
 	private List<RecipeComment> recipeComments;
+	
+	@OneToMany(mappedBy="recipe")
+	private List<RecipeImage> recipeImages;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	public Recipe() {
 		super();
@@ -134,13 +143,13 @@ public class Recipe {
 		this.enabled = enabled;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+//	public int getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
 
 	public String getNotes() {
 		return notes;
@@ -240,11 +249,27 @@ public class Recipe {
 		}
 	}
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<RecipeImage> getRecipeImages() {
+		return recipeImages;
+	}
+
+	public void setRecipeImages(List<RecipeImage> recipeImages) {
+		this.recipeImages = recipeImages;
+	}
+
 	@Override
 	public String toString() {
 		return "Recipe [id=" + id + ", name=" + name + ", ingredients=" + ingredients + ", imageURL=" + imageURL
 				+ ", dateCreated=" + dateCreated + ", directions=" + directions + ", dateUpdated=" + dateUpdated
-				+ ", enabled=" + enabled + ", userId=" + userId + ", notes=" + notes + ", published=" + published + "]";
+				+ ", enabled=" + enabled +", notes=" + notes + ", published=" + published + "]";
 	}
 
 }

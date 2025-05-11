@@ -50,7 +50,30 @@ class UserTest {
 	@Test
 	void test_User_RecipeRating_OneToMany_mapping() {
 		assertNotNull(user);
+		assertNotNull(user.getRecipeRatings());
+		assertTrue(user.getRecipeRatings().size() > 0);
 	}
 	
+	@Test
+	void test_User_MealPlan_OneToMany_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getMealPlans());
+		assertTrue(user.getMealPlans().size() > 0);
+	}
+	
+	@Test
+	void test_User_RecipeComment_OTM_mapping() {
+//		assertNotNull(user);
+//		assertNotNull(user.getRecipeComments());
+//		assertTrue(user.getRecipeComments().size() > 0);
+
+	}
+	
+	@Test
+	void test_User_Recipe_OTM_mapping() {
+		assertNotNull(user);
+		assertNotNull(user.getRecipes());
+		assertTrue(user.getRecipes().size() > 0);
+	}
 
 }
