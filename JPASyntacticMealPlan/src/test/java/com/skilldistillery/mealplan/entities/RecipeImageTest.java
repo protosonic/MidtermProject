@@ -41,8 +41,13 @@ class RecipeImageTest {
 	}
 
 	@Test
-	void test_User_entity_mapping() {
+	void test_RecipeImage_entity_mapping() {
 		assertNotNull(recipeImage);
+	}
+	
+	@Test
+	void test_RecipeImage_Recipe_MTO_mapping() {
+		assertNotNull(recipeImage.getRecipe());
 	}
 	
 

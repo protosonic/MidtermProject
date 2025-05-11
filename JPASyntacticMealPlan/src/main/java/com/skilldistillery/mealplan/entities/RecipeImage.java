@@ -10,27 +10,33 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="recipe_image")
+@Table(name = "recipe_image")
 public class RecipeImage {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="image_url")
+
+	@Column(name = "image_url")
 	private String imageUrl;
-	
-	 @Column(name="date_created")
-	 @CreationTimestamp
-	 private LocalDateTime dateCreated;
-	 
-	 private String caption;
-	  
-	 @Column(name="recipe_id")
-	 private int recipeId;
+
+	@Column(name = "date_created")
+	@CreationTimestamp
+	private LocalDateTime dateCreated;
+
+	private String caption;
+
+//	@Column(name = "recipe_id")
+//	private int recipeId;
+
+	@ManyToOne
+	@JoinColumn(name = "recipe_id")
+	private Recipe recipe;
 
 	public RecipeImage() {
 		super();
@@ -68,12 +74,20 @@ public class RecipeImage {
 		this.caption = caption;
 	}
 
-	public int getRecipeId() {
-		return recipeId;
+//	public int getRecipeId() {
+//		return recipeId;
+//	}
+//
+//	public void setRecipeId(int recipeId) {
+//		this.recipeId = recipeId;
+//	}
+
+	public Recipe getRecipe() {
+		return recipe;
 	}
 
-	public void setRecipeId(int recipeId) {
-		this.recipeId = recipeId;
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
 	}
 
 	@Override
@@ -96,7 +110,7 @@ public class RecipeImage {
 	@Override
 	public String toString() {
 		return "RecipeImage [id=" + id + ", imageUrl=" + imageUrl + ", dateCreated=" + dateCreated + ", caption="
-				+ caption + ", recipeId=" + recipeId + "]";
+				+ caption + "]";
 	}
-	
+
 }

@@ -35,8 +35,8 @@ public class RecipeComment {
 	@CreationTimestamp
 	private LocalDateTime dateCreated;
 
-	@Column(name = "user_id")
-	private int userId;
+//	@Column(name = "user_id")
+//	private int userId;
 
 	@ManyToOne
 	@JoinColumn(name = "in_reply_to_id")
@@ -49,6 +49,10 @@ public class RecipeComment {
 	@JoinColumn(name = "recipe_id")
 	private Recipe recipe;
 
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	
 	public RecipeComment() {
 		super();
 	}
@@ -110,13 +114,13 @@ public class RecipeComment {
 		this.dateCreated = dateCreated;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+//	public int getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
 
 	public RecipeComment getReply() {
 		return reply;
@@ -140,6 +144,14 @@ public class RecipeComment {
 
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

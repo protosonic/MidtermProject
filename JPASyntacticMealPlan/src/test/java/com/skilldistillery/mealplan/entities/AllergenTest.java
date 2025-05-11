@@ -49,6 +49,7 @@ class AllergenTest {
 	void test_Allergen_Recipe_ManyToMany_mapping() {
 		assertNotNull(allergen);
 		assertNotNull(allergen.getAllergenRecipes());
+		assertTrue(allergen.getAllergenRecipes().size() > 0);
 	}
 
 }

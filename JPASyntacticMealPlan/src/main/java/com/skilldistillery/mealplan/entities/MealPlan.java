@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,8 +27,8 @@ public class MealPlan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name="user_id")
-	private int userId;
+//	@Column(name="user_id")
+//	private int userId;
 	
 	private String name;
 	
@@ -54,6 +55,10 @@ public class MealPlan {
 	@JoinTable(name = "recipe_has_meal_plan", joinColumns = @JoinColumn(name = "meal_plan_id"), 
 	inverseJoinColumns = @JoinColumn(name = "recipe_id"))
 	private List<Recipe> recipes;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public MealPlan() {
 		super();
@@ -84,16 +89,24 @@ public class MealPlan {
 		this.id = id;
 	}
 
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+//	public int getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
 
 	public String getName() {
 		return name;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public void setName(String name) {
@@ -183,7 +196,7 @@ public class MealPlan {
 
 	@Override
 	public String toString() {
-		return "MealPlan [id=" + id + ", userId=" + userId + ", name=" + name + ", enabled=" + enabled
+		return "MealPlan [id=" + id + ", name=" + name + ", enabled=" + enabled
 				+ ", description=" + description + ", notes=" + notes + ", imageUrl=" + imageUrl + ", dateCreated="
 				+ dateCreated + ", dateUpdated=" + dateUpdated + ", published=" + published + "]";
 	}
