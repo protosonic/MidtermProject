@@ -332,7 +332,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mealplandb`;
-INSERT INTO `recipe` (`id`, `name`, `ingredients`, `image_url`, `date_created`, `directions`, `date_updated`, `enabled`, `user_id`, `notes`, `published`) VALUES (1, 'Chicken Enchiladas', 'Chicken', NULL, '2025-02-11', 'Put in oven', NULL, NULL, 1, NULL, NULL);
+INSERT INTO `recipe` (`id`, `name`, `ingredients`, `image_url`, `date_created`, `directions`, `date_updated`, `enabled`, `user_id`, `notes`, `published`) VALUES (1, 'Chicken Enchiladas', 'Chicken', NULL, '2025-02-11', 'Put in oven', NULL, 1, 1, NULL, NULL);
 
 COMMIT;
 
@@ -362,7 +362,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mealplandb`;
-INSERT INTO `recipe_comment` (`id`, `recipe_id`, `comment`, `enabled`, `date_created`, `user_id`, `in_reply_to_id`) VALUES (1, 1, NULL, NULL, NULL, 1, NULL);
+INSERT INTO `recipe_comment` (`id`, `recipe_id`, `comment`, `enabled`, `date_created`, `user_id`, `in_reply_to_id`) VALUES (1, 1, NULL, 1, NULL, 1, NULL);
 
 COMMIT;
 
