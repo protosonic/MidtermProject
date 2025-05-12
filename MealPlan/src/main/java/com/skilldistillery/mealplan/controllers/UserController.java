@@ -23,13 +23,17 @@ public class UserController {
 		return "home";
 	}
 
-	@GetMapping("getRecipe.do")
-	public String findById(@RequestParam("recipeId") int recipeId, Model model) {
-		List<Recipe> recipeList = userDAO.getList();
+	@GetMapping("getRecipes.do")
+	public String getRecipesList(Model model) {
+		List<Recipe> recipeList = userDAO.getRecipesList();
 		model.addAttribute("list", recipeList);
 		
-		Recipe found = userDAO.findbyId(recipeId);
-		model.addAttribute("recipe", found);
 		return "viewall";
+	}
+	
+	@GetMapping("viewRecipe.do")
+	public String showRecipe(Model model) {
+		
+		return "viewRecipe"; 
 	}
 }

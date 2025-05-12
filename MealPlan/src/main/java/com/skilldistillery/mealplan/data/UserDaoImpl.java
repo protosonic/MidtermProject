@@ -54,9 +54,16 @@ public class UserDaoImpl implements UserDAO {
 	}
 
 	@Override
-	public List<Recipe> getList() {
-		String jpql = "SELECT r FROM Recipe r";
+	public List<Recipe> getRecipesList() {
+		String jpql = "SELECT r FROM Recipe r WHERE r.enabled = true";
 		return em.createQuery(jpql, Recipe.class).getResultList();
+	}
+
+	@Override
+	public List<Recipe> getRecipeDetails(int recipeId) {
+		String jpql = "SELECT r FROM Recipe r WHERE r.id = :recipeId AND r.enabled = true";
+		
+		return em.createQuery(jpql, Recipe.class).setParameter("recipeId", recipeId).getResultList();
 	}
 
 
