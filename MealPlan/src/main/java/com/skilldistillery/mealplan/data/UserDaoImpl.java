@@ -34,13 +34,10 @@ public class UserDaoImpl implements UserDAO {
 	}
 
 	@Override
-	public User createAccountForUser(String userName, String passWord, String firstName, String lastName) {
-		User user = new User();
+	public User createAccountForUser(User user) {
+		
 		try {
-			user.setUsername(userName);
-			user.setPassword(passWord);
-			user.setFirstName(firstName);
-			user.setLastName(lastName);
+			user.setEnabled(true);
 
 			em.persist(user);
 		} catch (Exception e) {
@@ -61,5 +58,6 @@ public class UserDaoImpl implements UserDAO {
 		String jpql = "SELECT r FROM Recipe r";
 		return em.createQuery(jpql, Recipe.class).getResultList();
 	}
+
 
 }

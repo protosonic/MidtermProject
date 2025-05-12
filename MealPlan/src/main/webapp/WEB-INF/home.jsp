@@ -15,11 +15,12 @@
 		<form action="createAccount.do" method="POST">
 			<input type="text" name="firstName" placeholder="First Name">
 			<input type="text" name="lastName" placeholder="Last Name"> <input
-				type="text" name="userName" placeholder="Username"> <input
-				type="password" name="passWord" placeholder="Password"> <input
+				type="text" name="username" placeholder="Username"> <input
+				type="password" name="password" placeholder="Password"> <input
 				type="submit" value="Register">
 		</form>
 	</div>
+	
 
 </body>
 </html>
