@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="stylesheet.css" />
+	<jsp:include page="bootstrapHead.jsp"/>
 </head>
 <body>
-	<jsp:include page="nav.jsp" />
+	<jsp:include page="nav.jsp"/>
 	<h1>StackPlates</h1>
 	<div>
 		<h2>Create an account</h2>
@@ -20,5 +21,6 @@
 				type="submit" value="Register">
 		</form>
 	</div>
+	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>

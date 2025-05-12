@@ -1,20 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Navigation Bar</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="stylesheet.css" />
-</head>
-<body>
-	<nav class="navbar navbar-expand-xl navbar-light bg-light">
+
+	<nav class="navbar navbar-expand-sm navbar-light bg-light">
 		<a class="navbar-brand" href="#">StackPlates</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
@@ -31,7 +19,7 @@
 				</a></li>
 				<!-- Add link to recipes once complete -->
 				<li class="nav-item"><a class="nav-link" href="getRecipes.do">View All Recipes</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+				<li class="nav-item"><a class="nav-link" href="login.do">Login</a></li>
 				
 			</ul>
 			<!-- Add name and map  -->
@@ -42,9 +30,3 @@
 			</form>
 		</div>
 	</nav>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-		crossorigin="anonymous"></script>
-</body>
-</html>

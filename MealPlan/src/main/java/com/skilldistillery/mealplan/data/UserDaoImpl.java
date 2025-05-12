@@ -1,10 +1,10 @@
 package com.skilldistillery.mealplan.data;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
-import com.skilldistillery.mealplan.controllers.UserController;
-import com.skilldistillery.mealplan.entities.Recipe;
+
 import com.skilldistillery.mealplan.entities.User;
 
 import jakarta.persistence.EntityManager;
@@ -17,6 +17,7 @@ public class UserDaoImpl implements UserDAO {
 
 	@PersistenceContext
 	private EntityManager em;
+	
 
 	@Override
 	public User authenticateUser(String username, String password) {
@@ -47,8 +48,6 @@ public class UserDaoImpl implements UserDAO {
 
 		return user;
 	}
-
-	
 
 
 }

@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>${recipe.name }Details</title>
-<link rel="stylesheet" href="stylesheet.css" />
+<jsp:include page="bootstrapHead.jsp"/>
 </head>
 <body>
 	<jsp:include page="nav.jsp" />
@@ -38,16 +38,19 @@ ${recipe.directions}
 			</div>
 			
 			<div>
-			<form action=“deleteRecipe.do” method=“GET”>
-					<input type=“hidden” name=“id” value=“${recipe.id}“>
-				    <input type=“submit” name=“recipeId” value=“Delete Recipe”>
-				 </form>
+				<form action="deleteRecipe.do" method="GET">
+					<input type="hidden" name="id" value="${recipe.id }">
+					<input type="submit" name="recipeId" value="Delete Recipe">
+				</form>
 			</div>
+			
+			
 
 		</c:when>
 		<c:otherwise>
 			<h2>Error: User input not found in the database</h2>
 		</c:otherwise>
 	</c:choose>
+	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
 </html>
