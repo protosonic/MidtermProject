@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.mealplan.data.RecipeDAO;
 import com.skilldistillery.mealplan.entities.Recipe;
+import com.skilldistillery.mealplan.entities.User;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class RecipeController {
@@ -32,5 +35,15 @@ public class RecipeController {
 		return "viewrecipe"; 
 	}
 	
-
+	public String deleteRecipe(HttpSession session, @RequestParam("recipeId") int recipeId) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if(user != null) {
+			recipeDAO.deleteRecipe(recipeId, user);
+			viewName = "redirect:getRecipes.do";
+		} else {
+			viewName = "redirect:home.do";
+		}
+		return viewName;
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.mealplan.entities.Recipe;
+import com.skilldistillery.mealplan.entities.User;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -28,5 +29,16 @@ public class RecipeDAOImpl implements RecipeDAO{
 		return em.find(Recipe.class, recipeId);
 //		return em.createQuery(jpql, Recipe.class).setParameter("recipeId", recipeId).getResultList();
 	}
+
+	@Override
+	public boolean deleteRecipe(int recipeId, User user) {
+		boolean deleted = false;
+		Recipe deletedRecipe= em.find(Recipe.class, recipeId);
+		if(deletedRecipe != null && deletedRecipe.getUser().getId() == user.getId()) {
+			deletedRecipe.setEnabled(false);
+			deleted = true;
+		}
+		return deleted;
+	} 
 
 }
