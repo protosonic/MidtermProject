@@ -11,7 +11,6 @@
 	<jsp:include page="nav.jsp" />
 	<c:choose>
 		<c:when test="${not empty recipe}">
-			<c:forEach var="recipe" items="${list}">
 				<h1>${recipe.name }</h1>
 				<p>${recipe.imageURL }</p>
 
@@ -19,7 +18,6 @@
 				<ul>
 					<li>${recipe.ingredients }</li>
 				</ul>
-			</c:forEach>
 		</c:when>
 		<c:otherwise>
 			<h2>Error: User input not found in the database</h2>

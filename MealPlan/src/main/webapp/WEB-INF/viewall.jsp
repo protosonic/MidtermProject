@@ -11,7 +11,7 @@
 	<div>
 		<ol>
 			<c:forEach var="recipe" items="${list}">
-				<li><a href="getRecipes.do?recipeId=${recipe.id}">
+				<li><a href="viewrecipe.do?recipeId=${recipe.id}">
 						${recipe.name}</a></li>
 			</c:forEach>
 		</ol>
