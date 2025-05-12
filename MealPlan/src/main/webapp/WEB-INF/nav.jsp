@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,7 @@
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<!-- Add link to recipes once complete -->
-				<li class="nav-item"><a class="nav-link" href="getRecipe.do">View All Recipes</a></li>
+				<li class="nav-item"><a class="nav-link" href="getRecipes.do">View All Recipes</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Login</a></li>
 				
 			</ul>

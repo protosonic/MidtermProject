@@ -11,6 +11,8 @@ public interface UserDAO {
 	User createAccountForUser(User user);
 	
 	Recipe findbyId(int recipeId);
-	List<Recipe> getList();
+	List<Recipe> getRecipesList();
+	List<Recipe> getRecipeDetails(int recipeId);
+	
 
 }
