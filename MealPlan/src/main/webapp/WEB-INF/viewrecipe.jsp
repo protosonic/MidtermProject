@@ -20,15 +20,11 @@
 			
 			<h3>Ingredients</h3>
 			<!-- We need to add multiple ingredients and see hwo they populate -->
-			<pre>
-${recipe.ingredients}
-			</pre>
+<pre>${recipe.ingredients}</pre>
 			
 			<div>
 			<h3>Directions</h3>
-			<pre>
-${recipe.directions}
-			</pre>
+<pre>${recipe.directions}</pre>
 			</div>
 			
 			
@@ -38,9 +34,15 @@ ${recipe.directions}
 			</div>
 			
 			<div>
-				<form action="deleteRecipe.do" method="GET">
-					<input type="hidden" name="id" value="${recipe.id }">
-					<input type="submit" name="recipeId" value="Delete Recipe">
+				<form action="deleteRecipe.do">
+					<input type="hidden" name="recipeId" value="${recipe.id}">
+					<input type="submit" name="id" value="Delete Recipe">
+				</form>
+			</div>
+			<div>
+				<form action="updateRecipe.do" method="GET">
+					<input type="hidden" name="recipeId" value="${recipe.id}">
+					<input type="submit" name="id" value="Edit Recipe">
 				</form>
 			</div>
 			

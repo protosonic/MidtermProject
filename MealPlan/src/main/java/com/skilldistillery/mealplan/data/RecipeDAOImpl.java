@@ -39,6 +39,20 @@ public class RecipeDAOImpl implements RecipeDAO{
 			deleted = true;
 		}
 		return deleted;
-	} 
+	}
+
+	@Override
+	public Recipe updateRecipe(int recipeId, User user, Recipe recipe) {
+		Recipe updatedRecipe= em.find(Recipe.class, recipeId);
+		if(updatedRecipe != null && updatedRecipe.getUser().getId() == user.getId()) {
+		updatedRecipe.setName(recipe.getName());
+		updatedRecipe.setIngredients(recipe.getIngredients());
+		updatedRecipe.setDirections(recipe.getDirections());
+		updatedRecipe.setImageURL(recipe.getImageURL());
+		updatedRecipe.setNotes(recipe.getNotes());
+		updatedRecipe.setPublished(recipe.getPublished());
+		}
+		return updatedRecipe;
+	}
 
 }

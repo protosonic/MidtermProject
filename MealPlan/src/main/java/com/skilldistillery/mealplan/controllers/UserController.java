@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.skilldistillery.mealplan.data.UserDAO;
 import com.skilldistillery.mealplan.entities.User;
@@ -24,12 +23,12 @@ public class UserController {
 		return "home";
 	}
 
-	@RequestMapping(path = "login.do", method = RequestMethod.GET)
+	@GetMapping("login.do")
 	public String getLogin() {
 		return "login";
 	}
 
-	@RequestMapping(path = "login.do", method = RequestMethod.POST)
+	@PostMapping("login.do")
 	public String useLogin(User user, HttpSession session) {
 		user = userDAO.authenticateUser(user.getUsername(), user.getPassword());
 		if (user != null) {
@@ -39,7 +38,7 @@ public class UserController {
 			return "login";
 	}
 	
-	@RequestMapping(path = "logout.do", method = RequestMethod.GET)
+	@GetMapping("logout.do")
 	public String logOut(HttpSession session) {
 		session.invalidate();
 		return "home";
