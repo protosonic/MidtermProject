@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.mealplan.data.RecipeDAO;
@@ -34,7 +36,7 @@ public class RecipeController {
 		model.addAttribute("recipe", recipeDetails);
 		return "viewrecipe"; 
 	}
-	
+	@RequestMapping("deleteRecipe.do")
 	public String deleteRecipe(HttpSession session, @RequestParam("recipeId") int recipeId) {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
@@ -43,6 +45,32 @@ public class RecipeController {
 			viewName = "redirect:getRecipes.do";
 		} else {
 			viewName = "redirect:home.do";
+		}
+		return viewName;
+	}
+	
+	@GetMapping("updateRecipe.do")
+	public String retrieveUpdateRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Model model) {
+		String viewName = "";
+		Recipe recipeToUpdate = recipeDAO.getRecipeDetails(recipeId);
+		if(recipeToUpdate != null) {
+			model.addAttribute("recipe", recipeToUpdate);
+			viewName = "updateRecipe";
+		} else {
+			viewName = "redirect:viewrecipes";
+		}
+		return viewName;
+	}
+	
+	@PostMapping("updateRecipe.do")
+	public String updateRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Recipe recipe) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if(user != null) {
+		Recipe recipeUpdated = recipeDAO.updateRecipe(recipeId, user, recipe);
+			viewName = "redirect:viewrecipe.do?recipeId=" + recipeId;
+		} else {
+			viewName = "redirect:viewrecipes";
 		}
 		return viewName;
 	}

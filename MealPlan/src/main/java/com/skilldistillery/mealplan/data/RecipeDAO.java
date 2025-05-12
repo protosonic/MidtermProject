@@ -10,5 +10,6 @@ public interface RecipeDAO {
 	List<Recipe> getRecipesList();
 	Recipe getRecipeDetails(int recipeId);
 	boolean deleteRecipe(int recipeId, User user);
+	Recipe updateRecipe(int recipeId, User user, Recipe recipe);
 
 }
