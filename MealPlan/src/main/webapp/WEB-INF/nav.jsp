@@ -11,7 +11,7 @@
 	rel="stylesheet"
 	integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="homepagestylesheet.css" />
+<link rel="stylesheet" href="stylesheet.css" />
 </head>
 <body>
 	<nav class="navbar navbar-expand-xl navbar-light bg-light">
