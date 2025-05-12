@@ -47,7 +47,7 @@ public class Recipe {
 //	private int userId;
 
 	private String notes;
-
+//Public or private
 	private Boolean published;
 
 	@ManyToMany(mappedBy = "recipes")
