@@ -1,5 +1,6 @@
 package com.skilldistillery.mealplan.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +34,13 @@ public class Recipe {
 
 	@Column(name = "date_created")
 	@CreationTimestamp
-	private LocalDateTime dateCreated;
+	private LocalDate dateCreated;
 
 	private String directions;
 
 	@Column(name = "date_updated")
 	@UpdateTimestamp
-	private LocalDateTime dateUpdated;
+	private LocalDate dateUpdated;
 
 	private Boolean enabled;
 
@@ -111,11 +112,11 @@ public class Recipe {
 		this.imageURL = imageURL;
 	}
 
-	public LocalDateTime getDateCreated() {
+	public LocalDate getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(LocalDateTime dateCreated) {
+	public void setDateCreated(LocalDate dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
@@ -127,11 +128,11 @@ public class Recipe {
 		this.directions = directions;
 	}
 
-	public LocalDateTime getDateUpdated() {
+	public LocalDate getDateUpdated() {
 		return dateUpdated;
 	}
 
-	public void setDateUpdated(LocalDateTime dateUpdated) {
+	public void setDateUpdated(LocalDate dateUpdated) {
 		this.dateUpdated = dateUpdated;
 	}
 

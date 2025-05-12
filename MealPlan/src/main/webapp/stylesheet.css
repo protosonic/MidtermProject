@@ -22,3 +22,12 @@
   border: none;
   border-radius: 4px;
 }
+
+img {
+	height: auto;
+	width: 40%;
+	float: left;
+}
+pre{
+	font-family: sans-serif;
+}
