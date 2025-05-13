@@ -84,8 +84,20 @@ public class RecipeDAOImpl implements RecipeDAO {
 	@Override
 	public List<Recipe> findRecipeByKeyword(String nameKeyword, String ingredientKeyword) {
 		String jpql = "SELECT r FROM Recipe r WHERE LOWER(r.name) LIKE LOWER(CONCAT('%', :nameKeyword, '%')) OR LOWER(r.ingredients) LIKE LOWER(CONCAT('%', :ingredientKeyword, '%'))";
-		List<Recipe> foundRecipes = em.createQuery(jpql, Recipe.class).setParameter("nameKeyword", nameKeyword).setParameter("ingredientKeyword", ingredientKeyword).getResultList();
+		List<Recipe> foundRecipes = em.createQuery(jpql, Recipe.class).setParameter("nameKeyword", nameKeyword)
+				.setParameter("ingredientKeyword", ingredientKeyword).getResultList();
 		return foundRecipes;
+	}
+
+	@Override
+	public Recipe createNewRecipe(Recipe newRecipe, int userId) {
+		User user = em.find(User.class, userId);
+		if (user != null) {
+			newRecipe.setUser(user);
+			em.persist(newRecipe);
+			return newRecipe;
+		}
+		return null;
 	}
 
 }

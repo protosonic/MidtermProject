@@ -13,5 +13,6 @@ public interface RecipeDAO {
 	Recipe updateRecipe(int recipeId, User user, Recipe recipe);
 	Recipe saveRecipe(int recipeId, int userId);
 	List<Recipe> findRecipeByKeyword(String nameKeyword, String ingredientKeyword);
+	Recipe createNewRecipe(Recipe newRecipe, int userId);
 
 }

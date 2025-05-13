@@ -12,13 +12,18 @@
 	<jsp:include page="nav.jsp" />
 	<h1>My Profile</h1>
 	<div>
-		<h3>My Saved Recipes</h3>
-		<ol>
+		<div>
+			<h3>My Saved Recipes</h3>
 			<c:forEach var="recipe" items="${loggedInUser.recipes}">
-				<li><a href="viewrecipe.do?recipeId=${recipe.id}">
-						${recipe.name}</a></li>
+				<img src="${recipe.imageURL}" alt="Photo of ${recipe.name } ">
+				<a href="viewrecipe.do?recipeId=${recipe.id}"> ${recipe.name}</a>
 			</c:forEach>
-		</ol>
+		</div>
+		<div>
+			<form action="createNewRecipe.do" method="GET">
+				<input type="submit" value="Add New Recipe">
+			</form>
+		</div>
 
 	</div>
 	<jsp:include page="bootstrapFoot.jsp" />
