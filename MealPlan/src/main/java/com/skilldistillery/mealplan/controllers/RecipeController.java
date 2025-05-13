@@ -11,36 +11,43 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.mealplan.data.RecipeDAO;
+import com.skilldistillery.mealplan.data.UserDAO;
 import com.skilldistillery.mealplan.entities.Recipe;
 import com.skilldistillery.mealplan.entities.User;
+import com.skilldistillery.mealplan.services.SessionService;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class RecipeController {
-	
+
 	@Autowired
 	private RecipeDAO recipeDAO;
+	@Autowired
+	private SessionService sessionService;
 	
+	
+
 	@GetMapping("getRecipes.do")
 	public String getRecipesList(Model model) {
 		List<Recipe> recipeList = recipeDAO.getRecipesList();
 		model.addAttribute("list", recipeList);
-		
+
 		return "viewall";
 	}
-	
+
 	@GetMapping("viewrecipe.do")
 	public String showRecipe(Model model, @RequestParam("recipeId") int recipeId) {
 		Recipe recipeDetails = recipeDAO.getRecipeDetails(recipeId);
 		model.addAttribute("recipe", recipeDetails);
-		return "viewrecipe"; 
+		return "viewrecipe";
 	}
+
 	@RequestMapping("deleteRecipe.do")
 	public String deleteRecipe(HttpSession session, @RequestParam("recipeId") int recipeId) {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
-		if(user != null) {
+		if (user != null) {
 			recipeDAO.deleteRecipe(recipeId, user);
 			viewName = "redirect:getRecipes.do";
 		} else {
@@ -48,12 +55,12 @@ public class RecipeController {
 		}
 		return viewName;
 	}
-	
+
 	@GetMapping("updateRecipe.do")
 	public String retrieveUpdateRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Model model) {
 		String viewName = "";
 		Recipe recipeToUpdate = recipeDAO.getRecipeDetails(recipeId);
-		if(recipeToUpdate != null) {
+		if (recipeToUpdate != null) {
 			model.addAttribute("recipe", recipeToUpdate);
 			viewName = "updateRecipe";
 		} else {
@@ -61,17 +68,34 @@ public class RecipeController {
 		}
 		return viewName;
 	}
-	
+
 	@PostMapping("updateRecipe.do")
 	public String updateRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Recipe recipe) {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
-		if(user != null) {
-		Recipe recipeUpdated = recipeDAO.updateRecipe(recipeId, user, recipe);
+		if (user != null) {
+			Recipe recipeUpdated = recipeDAO.updateRecipe(recipeId, user, recipe);
 			viewName = "redirect:viewrecipe.do?recipeId=" + recipeId;
 		} else {
 			viewName = "redirect:viewrecipes";
 		}
 		return viewName;
 	}
+
+	@GetMapping("saveRecipe.do")
+	public String saveRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Model model) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			Recipe recipeSaved = recipeDAO.saveRecipe(recipeId, user.getId());
+			sessionService.refreshLoggedInUser(session);
+			viewName = "userProfile";
+		} else {
+			viewName = "home";
+		}
+		return viewName;
+	}
+
+	
+
 }
