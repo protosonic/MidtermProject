@@ -49,9 +49,9 @@ public class RecipeController {
 		String viewName = "";
 		if (user != null) {
 			recipeDAO.deleteRecipe(recipeId, user);
-			viewName = "redirect:getRecipes.do";
+			viewName = "viewall";
 		} else {
-			viewName = "redirect:home.do";
+			viewName = "home";
 		}
 		return viewName;
 	}
@@ -96,9 +96,36 @@ public class RecipeController {
 		return viewName;
 	}
 	@PostMapping("viewRecipesByKeyword.do")
-	public String viewRecipesByKeyword(Model model, @RequestParam("recipeKeyword") String nameKeyword, @RequestParam("recipeKeyword") String ingredientKeyword) {
+	public String viewRecipesByKeyword(HttpSession session, Model model, @RequestParam("recipeKeyword") String nameKeyword, @RequestParam("recipeKeyword") String ingredientKeyword) {
 		List<Recipe> foundRecipes = recipeDAO.findRecipeByKeyword(nameKeyword, ingredientKeyword);
 		model.addAttribute("listOfRecipes", foundRecipes);
+		sessionService.refreshLoggedInUser(session);
 		return "viewall";
+	}
+	
+	@GetMapping("createNewRecipe.do")
+	public String retrieveNewRecipeForm(HttpSession session, Model model, Recipe recipe) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if(user != null) {
+		viewName = "createNewRecipe";
+		} else {
+		viewName = "userProfile";
+		}
+		return viewName;
+	}
+	
+	@PostMapping("createNewRecipe.do")
+	public String createNewRecipe(HttpSession session, Model model, Recipe recipe) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if(user != null) {
+		recipeDAO.createNewRecipe(recipe, user.getId());
+		int recipeId = recipe.getId();
+		viewName = "redirect:viewrecipe.do?recipeId=" + recipeId;
+		} else {
+		viewName = "userProfile";
+		}
+		return viewName;
 	}
 }
