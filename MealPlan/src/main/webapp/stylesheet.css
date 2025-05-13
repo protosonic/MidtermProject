@@ -31,3 +31,9 @@ img {
 pre{
 	font-family: sans-serif;
 }
+
+.recipeListImage{
+	height: 10vh;
+	width: auto;
+	float:none;
+}

@@ -15,8 +15,13 @@
 		<div>
 			<h3>My Saved Recipes</h3>
 			<c:forEach var="recipe" items="${loggedInUser.recipes}">
-				<img src="${recipe.imageURL}" alt="Photo of ${recipe.name } ">
+				<div class="recipeListItem">
+				<img class="recipeListImage" src="${recipe.imageURL}" alt="Photo of ${recipe.name } ">
 				<a href="viewrecipe.do?recipeId=${recipe.id}"> ${recipe.name}</a>
+				<c:if test="${not recipe.enabled}">
+				<a class="btn btn-success" href="enableRecipe.do?recipeId=${recipe.id}">Enable</a>
+				</c:if>
+				</div>
 			</c:forEach>
 		</div>
 		<div>

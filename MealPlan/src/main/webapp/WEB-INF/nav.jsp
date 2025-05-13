@@ -3,7 +3,9 @@
 
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
-	<a class="navbar-brand" href="home.do">StackPlates</a>
+		<a class="navbar-brand" href="home.do">StackPlates</a>
+	
+
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 		data-target="#navbarSupportedContent"
 		aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -15,9 +17,7 @@
 		<ul class="navbar-nav mr-auto"
 			style="display: flex; flex-wrap: wrap; justify-content: space-between;">
 
-			<!-- Add link to recipes once complete -->
-			<li class="nav-item"><a class="nav-link" href="getRecipes.do">View
-					All Recipes</a></li>
+			<li class="nav-item"><a class="nav-link" href="userProfile.do">My Account</a></li>
 			<c:if test="${empty sessionScope.loggedInUser }">
 				<li class="nav-item"><a class="nav-link" href="login.do">Login</a></li>
 			</c:if>
@@ -26,8 +26,8 @@
 			</c:if>
 
 		</ul>
-		<!-- Add name and map  -->
-		<form action="viewRecipesByKeyword.do" method="POST" class="d-flex" id="search-bar">
+		<form action="viewRecipesByKeyword.do" method="POST" class="d-flex"
+			id="search-bar">
 			<input class="form-control me-2" name="recipeKeyword" type="search"
 				placeholder="Search For a Recipe" aria-label="Search">
 			<button class="btn btn-outline-success" type="submit">Search</button>

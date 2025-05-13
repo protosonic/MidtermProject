@@ -37,7 +37,7 @@
 
 			<c:if test="${not empty sessionScope.loggedInUser }">
 				<div>
-					<form action="deleteRecipe.do">
+					<form action="deleteRecipe.do" method="GET">
 						<input type="hidden" name="recipeId" value="${recipe.id}">
 						<input type="submit" name="id" value="Delete Recipe">
 					</form>

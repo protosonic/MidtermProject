@@ -83,7 +83,9 @@ public class RecipeDAOImpl implements RecipeDAO {
 
 	@Override
 	public List<Recipe> findRecipeByKeyword(String nameKeyword, String ingredientKeyword) {
-		String jpql = "SELECT r FROM Recipe r WHERE LOWER(r.name) LIKE LOWER(CONCAT('%', :nameKeyword, '%')) OR LOWER(r.ingredients) LIKE LOWER(CONCAT('%', :ingredientKeyword, '%'))";
+		nameKeyword = "%" + nameKeyword + "%";
+		ingredientKeyword = "%" + ingredientKeyword + "%";
+		String jpql = "SELECT r FROM Recipe r WHERE ( LOWER(r.name) LIKE LOWER(:nameKeyword) OR LOWER(r.ingredients) LIKE LOWER(:ingredientKeyword)) AND r.enabled = true";
 		List<Recipe> foundRecipes = em.createQuery(jpql, Recipe.class).setParameter("nameKeyword", nameKeyword)
 				.setParameter("ingredientKeyword", ingredientKeyword).getResultList();
 		return foundRecipes;
@@ -94,10 +96,22 @@ public class RecipeDAOImpl implements RecipeDAO {
 		User user = em.find(User.class, userId);
 		if (user != null) {
 			newRecipe.setUser(user);
+			newRecipe.setEnabled(true);
 			em.persist(newRecipe);
 			return newRecipe;
 		}
 		return null;
+	}
+
+	@Override
+	public boolean enableRecipe(int recipeId, User user) {
+		boolean enabled = false;
+		Recipe deletedRecipe = em.find(Recipe.class, recipeId);
+		if (deletedRecipe != null && deletedRecipe.getUser().getId() == user.getId()) {
+			deletedRecipe.setEnabled(true);
+			enabled = true;
+		}
+		return enabled;
 	}
 
 }
