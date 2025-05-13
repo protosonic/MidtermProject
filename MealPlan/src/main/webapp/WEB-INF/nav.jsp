@@ -27,8 +27,8 @@
 
 		</ul>
 		<!-- Add name and map  -->
-		<form class="d-flex" id="search-bar">
-			<input class="form-control me-2" type="search"
+		<form action="viewRecipesByKeyword.do" method="POST" class="d-flex" id="search-bar">
+			<input class="form-control me-2" name="recipeKeyword" type="search"
 				placeholder="Search For a Recipe" aria-label="Search">
 			<button class="btn btn-outline-success" type="submit">Search</button>
 		</form>

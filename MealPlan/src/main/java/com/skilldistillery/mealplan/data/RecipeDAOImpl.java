@@ -13,7 +13,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class RecipeDAOImpl implements RecipeDAO{
+public class RecipeDAOImpl implements RecipeDAO {
 	@PersistenceContext
 	private EntityManager em;
 
@@ -33,8 +33,8 @@ public class RecipeDAOImpl implements RecipeDAO{
 	@Override
 	public boolean deleteRecipe(int recipeId, User user) {
 		boolean deleted = false;
-		Recipe deletedRecipe= em.find(Recipe.class, recipeId);
-		if(deletedRecipe != null && deletedRecipe.getUser().getId() == user.getId()) {
+		Recipe deletedRecipe = em.find(Recipe.class, recipeId);
+		if (deletedRecipe != null && deletedRecipe.getUser().getId() == user.getId()) {
 			deletedRecipe.setEnabled(false);
 			deleted = true;
 		}
@@ -43,14 +43,14 @@ public class RecipeDAOImpl implements RecipeDAO{
 
 	@Override
 	public Recipe updateRecipe(int recipeId, User user, Recipe recipe) {
-		Recipe updatedRecipe= em.find(Recipe.class, recipeId);
-		if(updatedRecipe != null && updatedRecipe.getUser().getId() == user.getId()) {
-		updatedRecipe.setName(recipe.getName());
-		updatedRecipe.setIngredients(recipe.getIngredients());
-		updatedRecipe.setDirections(recipe.getDirections());
-		updatedRecipe.setImageURL(recipe.getImageURL());
-		updatedRecipe.setNotes(recipe.getNotes());
-		updatedRecipe.setPublished(recipe.getPublished());
+		Recipe updatedRecipe = em.find(Recipe.class, recipeId);
+		if (updatedRecipe != null && updatedRecipe.getUser().getId() == user.getId()) {
+			updatedRecipe.setName(recipe.getName());
+			updatedRecipe.setIngredients(recipe.getIngredients());
+			updatedRecipe.setDirections(recipe.getDirections());
+			updatedRecipe.setImageURL(recipe.getImageURL());
+			updatedRecipe.setNotes(recipe.getNotes());
+			updatedRecipe.setPublished(recipe.getPublished());
 		}
 		return updatedRecipe;
 	}
@@ -59,14 +59,15 @@ public class RecipeDAOImpl implements RecipeDAO{
 	public Recipe saveRecipe(int recipeId, int userId) {
 		Recipe savedRecipe = em.find(Recipe.class, recipeId);
 		User newOwner = em.find(User.class, userId);
-		if(savedRecipe != null && newOwner != null) {
+		if (savedRecipe != null && newOwner != null) {
 			Recipe clonedRecipe = cloneRecipe(savedRecipe);
 			clonedRecipe.setUser(newOwner);
 			em.persist(clonedRecipe);
-			
+
 		}
 		return savedRecipe;
 	}
+
 	private Recipe cloneRecipe(Recipe recipe) {
 		Recipe clone = new Recipe();
 		clone.setName(recipe.getName());
@@ -79,5 +80,12 @@ public class RecipeDAOImpl implements RecipeDAO{
 		clone.setPublished(true);
 		return clone;
 	}
-	
+
+	@Override
+	public List<Recipe> findRecipeByKeyword(String nameKeyword, String ingredientKeyword) {
+		String jpql = "SELECT r FROM Recipe r WHERE LOWER(r.name) LIKE LOWER(CONCAT('%', :nameKeyword, '%')) OR LOWER(r.ingredients) LIKE LOWER(CONCAT('%', :ingredientKeyword, '%'))";
+		List<Recipe> foundRecipes = em.createQuery(jpql, Recipe.class).setParameter("nameKeyword", nameKeyword).setParameter("ingredientKeyword", ingredientKeyword).getResultList();
+		return foundRecipes;
+	}
+
 }

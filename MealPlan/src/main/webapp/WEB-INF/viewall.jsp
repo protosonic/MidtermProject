@@ -10,9 +10,10 @@
 </head>
 <body>
 	<jsp:include page="nav.jsp" />
+
 	<div>
 		<ol>
-			<c:forEach var="recipe" items="${list}">
+			<c:forEach var="recipe" items="${listOfRecipes}">
 				<li><a href="viewrecipe.do?recipeId=${recipe.id}">
 						${recipe.name}</a></li>
 			</c:forEach>
