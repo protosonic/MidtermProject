@@ -26,15 +26,6 @@ public class RecipeController {
 	@Autowired
 	private SessionService sessionService;
 	
-	
-//Left over from viewall function
-//	@GetMapping("getRecipes.do")
-//	public String getRecipesList(Model model) {
-//		List<Recipe> recipeList = recipeDAO.getRecipesList();
-//		model.addAttribute("list", recipeList);
-//
-//		return "viewall";
-//	}
 
 	@GetMapping("viewrecipe.do")
 	public String showRecipe(Model model, @RequestParam("recipeId") int recipeId) {
@@ -42,14 +33,28 @@ public class RecipeController {
 		model.addAttribute("recipe", recipeDetails);
 		return "viewrecipe";
 	}
+	@GetMapping("deleteRecipe.do")
+	public String confirmRecipeDelete(HttpSession session, @RequestParam("recipeId") int recipeId, Model model) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			Recipe recipeDetails = recipeDAO.getRecipeDetails(recipeId);
+			model.addAttribute("recipe", recipeDetails);
+			viewName = "deleteRecipe";
+		} else {
+			viewName = "home";
+		}
+		return viewName;
+	}
+	
 
-	@RequestMapping("deleteRecipe.do")
+	@PostMapping("deleteRecipe.do")
 	public String deleteRecipe(HttpSession session, @RequestParam("recipeId") int recipeId) {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
 		if (user != null) {
 			recipeDAO.deleteRecipe(recipeId, user);
-			viewName = "viewall";
+			viewName = "redirect:userProfile.do";
 		} else {
 			viewName = "home";
 		}
@@ -64,7 +69,7 @@ public class RecipeController {
 			model.addAttribute("recipe", recipeToUpdate);
 			viewName = "updateRecipe";
 		} else {
-			viewName = "redirect:viewrecipes";
+			viewName = "viewrecipe";
 		}
 		return viewName;
 	}
@@ -76,6 +81,7 @@ public class RecipeController {
 		if (user != null) {
 			Recipe recipeUpdated = recipeDAO.updateRecipe(recipeId, user, recipe);
 			viewName = "redirect:viewrecipe.do?recipeId=" + recipeId;
+			
 		} else {
 			viewName = "redirect:viewrecipes";
 		}
@@ -83,11 +89,25 @@ public class RecipeController {
 	}
 
 	@GetMapping("saveRecipe.do")
-	public String saveRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Model model) {
+	public String goToSaveRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
 		if (user != null) {
-			Recipe recipeSaved = recipeDAO.saveRecipe(recipeId, user.getId());
+			Recipe recipeToClone = recipeDAO.getRecipeDetails(recipeId);
+			model.addAttribute("cloningRecipe", recipeToClone);
+			viewName = "updateRecipe";
+		} else {
+			viewName = "home";
+		}
+		return viewName;
+	}
+	
+	@PostMapping("saveRecipe.do")
+	public String saveRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Model model, Recipe recipe) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			Recipe recipeSaved = recipeDAO.createNewRecipe(recipe, user.getId());
 			sessionService.refreshLoggedInUser(session);
 			viewName = "userProfile";
 		} else {
@@ -95,6 +115,7 @@ public class RecipeController {
 		}
 		return viewName;
 	}
+	
 	@PostMapping("viewRecipesByKeyword.do")
 	public String viewRecipesByKeyword(HttpSession session, Model model, @RequestParam("recipeKeyword") String nameKeyword, @RequestParam("recipeKeyword") String ingredientKeyword) {
 		List<Recipe> foundRecipes = recipeDAO.findRecipeByKeyword(nameKeyword, ingredientKeyword);
@@ -125,6 +146,20 @@ public class RecipeController {
 		viewName = "redirect:viewrecipe.do?recipeId=" + recipeId;
 		} else {
 		viewName = "userProfile";
+		}
+		return viewName;
+	}
+	
+	@RequestMapping("enableRecipe.do")
+	public String enableRecipe(HttpSession session, @RequestParam("recipeId") int recipeId) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			recipeDAO.enableRecipe(recipeId, user);
+			sessionService.refreshLoggedInUser(session);
+			viewName = "redirect:userProfile.do";
+		} else {
+			viewName = "home";
 		}
 		return viewName;
 	}

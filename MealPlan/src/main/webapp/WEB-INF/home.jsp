@@ -12,6 +12,7 @@
 	<jsp:include page="nav.jsp"/>
 	<h1>StackPlates</h1>
 	<div>
+	<c:if test="${empty sessionScope.loggedInUser}">
 		<h2>Create an account</h2>
 		<form action="createAccount.do" method="POST">
 			<input type="text" name="firstName" placeholder="First Name">
@@ -20,6 +21,7 @@
 				type="password" name="password" placeholder="Password"> <input
 				type="submit" value="Register">
 		</form>
+		</c:if>
 	</div>
 	<jsp:include page="bootstrapFoot.jsp"/>
 </body>
