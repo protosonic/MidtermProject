@@ -55,4 +55,29 @@ public class RecipeDAOImpl implements RecipeDAO{
 		return updatedRecipe;
 	}
 
+	@Override
+	public Recipe saveRecipe(int recipeId, int userId) {
+		Recipe savedRecipe = em.find(Recipe.class, recipeId);
+		User newOwner = em.find(User.class, userId);
+		if(savedRecipe != null && newOwner != null) {
+			Recipe clonedRecipe = cloneRecipe(savedRecipe);
+			clonedRecipe.setUser(newOwner);
+			em.persist(clonedRecipe);
+			
+		}
+		return savedRecipe;
+	}
+	private Recipe cloneRecipe(Recipe recipe) {
+		Recipe clone = new Recipe();
+		clone.setName(recipe.getName());
+		clone.setIngredients(recipe.getIngredients());
+		clone.setImageURL(recipe.getImageURL());
+		clone.setDirections(recipe.getDirections());
+		clone.setDateUpdated(null);
+		clone.setEnabled(true);
+		clone.setNotes(recipe.getNotes());
+		clone.setPublished(true);
+		return clone;
+	}
+	
 }

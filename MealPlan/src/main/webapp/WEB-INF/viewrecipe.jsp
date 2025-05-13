@@ -46,7 +46,12 @@
 				</form>
 			</div>
 			
-			
+			<div>
+				<form action="saveRecipe.do" method="GET">
+					<input type="hidden" name="recipeId" value="${recipe.id}">
+					<input type="submit" value="Save Recipe">
+				</form>
+			</div>
 
 		</c:when>
 		<c:otherwise>

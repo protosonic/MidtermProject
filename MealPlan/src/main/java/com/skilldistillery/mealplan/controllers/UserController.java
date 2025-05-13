@@ -33,7 +33,7 @@ public class UserController {
 		user = userDAO.authenticateUser(user.getUsername(), user.getPassword());
 		if (user != null) {
 			session.setAttribute("loggedInUser", user);
-			return "userhomepage";
+			return "userProfile";
 		} else
 			return "login";
 	}

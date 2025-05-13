@@ -25,7 +25,7 @@ public class CreateAccountController {
 		
 		if (userDAO.createAccountForUser(user) != null) {
 			session.setAttribute("loggedInUser", user);
-			return "userhomepage";
+			return "userProfile";
 		}
 
 		return "home";
