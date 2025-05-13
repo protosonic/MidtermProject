@@ -27,14 +27,14 @@ public class RecipeController {
 	private SessionService sessionService;
 	
 	
-
-	@GetMapping("getRecipes.do")
-	public String getRecipesList(Model model) {
-		List<Recipe> recipeList = recipeDAO.getRecipesList();
-		model.addAttribute("list", recipeList);
-
-		return "viewall";
-	}
+//Left over from viewall function
+//	@GetMapping("getRecipes.do")
+//	public String getRecipesList(Model model) {
+//		List<Recipe> recipeList = recipeDAO.getRecipesList();
+//		model.addAttribute("list", recipeList);
+//
+//		return "viewall";
+//	}
 
 	@GetMapping("viewrecipe.do")
 	public String showRecipe(Model model, @RequestParam("recipeId") int recipeId) {
@@ -95,7 +95,10 @@ public class RecipeController {
 		}
 		return viewName;
 	}
-
-	
-
+	@PostMapping("viewRecipesByKeyword.do")
+	public String viewRecipesByKeyword(Model model, @RequestParam("recipeKeyword") String nameKeyword, @RequestParam("recipeKeyword") String ingredientKeyword) {
+		List<Recipe> foundRecipes = recipeDAO.findRecipeByKeyword(nameKeyword, ingredientKeyword);
+		model.addAttribute("listOfRecipes", foundRecipes);
+		return "viewall";
+	}
 }
