@@ -28,6 +28,12 @@
 			<input type="submit" name="id" value="Delete Meal Plan">
 		</form>
 	</div>
+		<div>
+		<form action="updateMealPlan.do" method="GET">
+			<input type="hidden" name="mealPlanId" value="${mealPlan.id}">
+			<input type="submit" name="id" value="Update Meal Plan">
+		</form>
+	</div>
 	<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>
