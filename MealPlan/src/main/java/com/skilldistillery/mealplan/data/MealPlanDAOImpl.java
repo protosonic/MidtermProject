@@ -22,7 +22,7 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 		MealPlan savedMealPlan = em.find(MealPlan.class, mealPlanId);
 		Recipe savedRecipe = em.find(Recipe.class, recipeId);
 		User newOwner = em.find(User.class, userId);
-		if (savedRecipe != null && newOwner != null && savedMealPlan != null) {
+		if (savedRecipe != null && newOwner != null && savedMealPlan != null && savedMealPlan.getUser().getId() == userId) {
 			savedMealPlan.addRecipe(savedRecipe);
 		}
 		return savedMealPlan;
