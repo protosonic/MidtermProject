@@ -41,7 +41,16 @@
 			<h3>My Saved Meal Plans</h3>
 			<c:forEach var="mealPlan" items="${loggedInUser.mealPlans}">
 				<div class="mealPlanListItem">
-					<img class="mealPlanListImage" src="${mealPlan.imageURL}"
+					<img class="mealPlanListImage" 
+					
+					<c:choose>
+						<c:when test="${not empty mealPlan.imageURL}">
+							src="${mealPlan.imageURL}"
+						</c:when>
+						<c:otherwise>
+						src="images/MealPlanStock.jpg"
+						</c:otherwise>
+					</c:choose>	
 						alt="Photo of ${mealPlan.name } "> <a
 						href="viewMealPlan.do?mealPlanId=${mealPlan.id}"> ${mealPlan.name}</a>
 					<c:if test="${not mealPlan.enabled}">

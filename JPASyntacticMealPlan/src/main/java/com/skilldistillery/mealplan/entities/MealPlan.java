@@ -141,7 +141,7 @@ public class MealPlan {
 		return imageURL;
 	}
 
-	public void setImageUrl(String imageURL) {
+	public void setImageURL(String imageURL) {
 		this.imageURL = imageURL;
 	}
 
