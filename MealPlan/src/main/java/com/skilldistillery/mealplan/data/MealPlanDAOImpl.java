@@ -21,8 +21,8 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 	public MealPlan addToMealPlan(int recipeId, int userId, int mealPlanId) {
 		MealPlan savedMealPlan = em.find(MealPlan.class, mealPlanId);
 		Recipe savedRecipe = em.find(Recipe.class, recipeId);
-		User newOwner = em.find(User.class, userId);
-		if (savedRecipe != null && newOwner != null && savedMealPlan != null && savedMealPlan.getUser().getId() == userId) {
+		User owner = em.find(User.class, userId);
+		if (savedRecipe != null && owner != null && savedMealPlan != null && savedMealPlan.getUser().getId() == userId) {
 			savedMealPlan.addRecipe(savedRecipe);
 		}
 		return savedMealPlan;
@@ -40,7 +40,7 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 	}
 
 	@Override
-	public MealPlan findMealPlanById(int userId, int mealPlanId) {
+	public MealPlan getMealPlanDetailsById(int userId, int mealPlanId) {
 		String jpql = "SELECT mp FROM MealPlan mp WHERE mp.user.id = :userId AND mp.id = :planId";
 		MealPlan plan = null;
 		try {
@@ -85,5 +85,17 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 			updatedMealPlan.setPublished(mealPlan.getPublished());
 		}
 		return updatedMealPlan;
+	}
+
+	@Override
+	public MealPlan deleteFromMealPlan(int recipeId, int userId, int mealPlanId) {
+		MealPlan savedMealPlan = em.find(MealPlan.class, mealPlanId);
+		Recipe savedRecipe = em.find(Recipe.class, recipeId);
+		User owner = em.find(User.class, userId);
+		if (savedRecipe != null && owner != null && savedMealPlan != null && savedMealPlan.getUser().getId() == userId) {
+			savedMealPlan.removeRecipe(savedRecipe);
+		}
+		return savedMealPlan;
+	
 	}
 }

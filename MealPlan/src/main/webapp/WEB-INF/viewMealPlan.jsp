@@ -14,13 +14,20 @@
 	<pre>${mealPlan.description }</pre>
 	<pre>${mealPlan.notes }</pre>
 	<div>
-		<ol>
-			<%-- <c:forEach var="recipe" items="${listOfRecipes}"> --%>
-			<c:forEach var="recipe" items="${mealPlan.recipes}">
-				<li><a href="viewrecipe.do?recipeId=${recipe.id}">
-						${recipe.name}</a></li>
-			</c:forEach>
-		</ol>
+
+		<c:forEach var="recipe" items="${mealPlan.recipes}">
+			<img class="recipeListImage" src="${recipe.imageURL}"
+				alt="Photo of ${recipe.name } ">
+			<a href="viewrecipe.do?recipeId=${recipe.id}"> ${recipe.name}</a>
+			<div>
+				<form action="deleteRecipeFromMealPlan.do" method="GET">
+					<input type="hidden" name="recipeId" value="${recipe.id}">
+					<input type="hidden" name="mealPlanId" value="${mealPlan.id}">
+					<input type="submit" name="id" value="Delete Recipe From Meal Plan">
+				</form>
+			</div>
+		</c:forEach>
+
 	</div>
 	<div>
 		<form action="deleteMealPlan.do" method="GET">
@@ -28,7 +35,7 @@
 			<input type="submit" name="id" value="Delete Meal Plan">
 		</form>
 	</div>
-		<div>
+	<div>
 		<form action="updateMealPlan.do" method="GET">
 			<input type="hidden" name="mealPlanId" value="${mealPlan.id}">
 			<input type="submit" name="id" value="Update Meal Plan">
