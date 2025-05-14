@@ -49,9 +49,6 @@ public class MealPlanController {
 		if (user != null) {
 			mealPlanDAO.createNewMealPlan(newMealPlan, user.getId());
 			model.addAttribute("mealPlan", newMealPlan);
-//			List<Recipe> foundRecipes = recipeDAO.getMealPlanRecipesList();
-//			model.addAttribute("listOfRecipes", foundRecipes);
-//			viewName = "redirect:viewMealPlan.do?mealPlanId=" + newMealPlan.getId(); 
 			viewName = "viewMealPlan";
 		} else {
 			viewName = "home";
@@ -64,7 +61,7 @@ public class MealPlanController {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
 		if (user != null) {
-			model.addAttribute("mealPlan", mealPlanDAO.findMealPlanById(user.getId(), mealPlanId));
+			model.addAttribute("mealPlan", mealPlanDAO.getMealPlanDetailsById(user.getId(), mealPlanId));
 			viewName = "viewMealPlan";
 		} else {
 			viewName = "home";
@@ -77,7 +74,7 @@ public class MealPlanController {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
 		if (user != null) {
-			MealPlan mealPlan = mealPlanDAO.findMealPlanById(user.getId(), mealPlanId);
+			MealPlan mealPlan = mealPlanDAO.getMealPlanDetailsById(user.getId(), mealPlanId);
 			model.addAttribute("mealPlan", mealPlan);
 			viewName = "deleteMealPlan";
 		} else {
@@ -117,7 +114,7 @@ public class MealPlanController {
 	public String retrieveUpdateMealPlan(HttpSession session, @RequestParam("mealPlanId") int mealPlanId, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
-		MealPlan mealPlanToUpdate = mealPlanDAO.findMealPlanById(user.getId(), mealPlanId);
+		MealPlan mealPlanToUpdate = mealPlanDAO.getMealPlanDetailsById(user.getId(), mealPlanId);
 		if (mealPlanToUpdate != null) {
 			model.addAttribute("mealPlan", mealPlanToUpdate);
 			viewName = "updateMealPlan";
@@ -151,6 +148,39 @@ public class MealPlanController {
 			viewName = "redirect:viewMealPlan.do?mealPlanId=" + mealPlanId;
 		}else {
 			viewName = "redirect:viewrecipe.do?recipeId=" + recipeId;
+		}
+		return viewName;
+	}
+	
+	@GetMapping("deleteRecipeFromMealPlan.do")
+	public String confirmRecipeDeleteFromMealPlan(HttpSession session, @RequestParam("mealPlanId") int mealPlanId, @RequestParam("recipeId") int recipeId,
+			Model model) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			MealPlan mealPlan = mealPlanDAO.getMealPlanDetailsById(user.getId(), mealPlanId);
+			Recipe recipe = recipeDAO.getRecipeDetails(recipeId);
+			model.addAttribute("recipe", recipe);
+			model.addAttribute("mealPlan", mealPlan);
+			viewName = "deleteRecipeFromMealPlan";
+		} else {
+			viewName = "home";
+		}
+		return viewName;
+	}
+	
+	@PostMapping("deleteRecipeFromMealPlan.do")
+	public String deleteRecipeFromeMealPlan(Model model, @RequestParam("recipeId") int recipeId, HttpSession session,
+			@RequestParam("mealPlanId") int mealPlanId){
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			mealPlanDAO.deleteFromMealPlan(recipeId, user.getId(), mealPlanId);
+//			model.addAttribute("recipe", recipeId);
+//			model.addAttribute("mealPlan", mp);
+			viewName = "redirect:viewMealPlan.do?mealPlanId=" + mealPlanId;
+		}else {
+			viewName = "home";
 		}
 		return viewName;
 	}

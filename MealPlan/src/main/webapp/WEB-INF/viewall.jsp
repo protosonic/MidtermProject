@@ -12,12 +12,16 @@
 	<jsp:include page="nav.jsp" />
 
 	<div>
-		<ul>
+		
 			<c:forEach var="recipe" items="${listOfRecipes}">
-				<li><a href="viewrecipe.do?recipeId=${recipe.id}">
-						${recipe.name}</a></li>
+			<img class="recipeListImage" src="${recipe.imageURL}"
+						alt="Photo of ${recipe.name } "> <a
+						href="viewrecipe.do?recipeId=${recipe.id}"> ${recipe.name}</a>
+				<%-- <a href="viewrecipe.do?recipeId=${recipe.id}">
+						${recipe.name}</a> --%>
+			
 			</c:forEach>
-		</ul>
+
 	</div>
 	<jsp:include page="bootstrapFoot.jsp" />
 </body>
