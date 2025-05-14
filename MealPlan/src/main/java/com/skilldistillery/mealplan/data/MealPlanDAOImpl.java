@@ -31,8 +31,12 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 
 
 	@Override
-	public MealPlan createNewMealPlan(MealPlan newMealPlan) {
-		em.persist(newMealPlan);
+	public MealPlan createNewMealPlan(MealPlan newMealPlan, int userId) {
+		User foundOwner = em.find(User.class, userId);
+		if(foundOwner != null && newMealPlan != null) {
+			newMealPlan.setUser(foundOwner);
+			em.persist(newMealPlan);
+		}
 		return newMealPlan;
 	}
 

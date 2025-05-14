@@ -39,7 +39,7 @@ public class MealPlan {
 	private String notes;
 	
 	@Column(name="image_url")
-	private String imageUrl;
+	private String imageURL;
 	
 	@Column(name="date_created")
 	@CreationTimestamp
@@ -137,12 +137,12 @@ public class MealPlan {
 		this.notes = notes;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public String getImageURL() {
+		return imageURL;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImageUrl(String imageURL) {
+		this.imageURL = imageURL;
 	}
 
 	public LocalDateTime getDateCreated() {
@@ -197,7 +197,7 @@ public class MealPlan {
 	@Override
 	public String toString() {
 		return "MealPlan [id=" + id + ", name=" + name + ", enabled=" + enabled
-				+ ", description=" + description + ", notes=" + notes + ", imageUrl=" + imageUrl + ", dateCreated="
+				+ ", description=" + description + ", notes=" + notes + ", imageUrl=" + imageURL + ", dateCreated="
 				+ dateCreated + ", dateUpdated=" + dateUpdated + ", published=" + published + "]";
 	}
 	

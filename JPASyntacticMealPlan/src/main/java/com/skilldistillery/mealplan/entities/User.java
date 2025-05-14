@@ -41,7 +41,7 @@ public class User {
 	private LocalDateTime dateCreated;
 	
 	@Column(name="profile_image_url")
-	private String profileImageUrl;
+	private String profileImageURL;
 	
 	@OneToMany(mappedBy="user")
 	private List<RecipeRating> recipeRatings;
@@ -148,12 +148,12 @@ public class User {
 		this.dateCreated = dateCreated;
 	}
 
-	public String getProfileImageUrl() {
-		return profileImageUrl;
+	public String getProfileImageURL() {
+		return profileImageURL;
 	}
 
-	public void setProfileImageUrl(String profileImageUrl) {
-		this.profileImageUrl = profileImageUrl;
+	public void setProfileImageURL(String profileImageURL) {
+		this.profileImageURL = profileImageURL;
 	}
 
 	public List<RecipeRating> getRecipeRatings() {
