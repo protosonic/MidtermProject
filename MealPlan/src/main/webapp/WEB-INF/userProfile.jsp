@@ -29,6 +29,12 @@
 				<input type="submit" value="Add New Recipe">
 			</form>
 		</div>
+		<div>
+			<form action="createMealPlan.do" method="GET">
+				<input type="submit" value="Create New Meal Plan">
+			</form>
+		
+		</div>
 
 	</div>
 	<jsp:include page="bootstrapFoot.jsp" />
