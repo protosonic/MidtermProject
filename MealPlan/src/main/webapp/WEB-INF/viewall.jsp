@@ -12,12 +12,12 @@
 	<jsp:include page="nav.jsp" />
 
 	<div>
-		<ol>
+		<ul>
 			<c:forEach var="recipe" items="${listOfRecipes}">
 				<li><a href="viewrecipe.do?recipeId=${recipe.id}">
 						${recipe.name}</a></li>
 			</c:forEach>
-		</ol>
+		</ul>
 	</div>
 	<jsp:include page="bootstrapFoot.jsp" />
 </body>

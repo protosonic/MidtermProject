@@ -54,6 +54,32 @@
 						<input type="submit" value="Save Recipe">
 					</form>
 				</div>
+				<div>
+					<form action="addRecipeToMealPlan.do" method="POST">
+						<input type="hidden" name="recipeId" value="${recipe.id}">
+						<select name="mealPlanId">
+							<c:forEach var="mealPlan" items="${loggedInUser.mealPlans}">
+								<option value="${mealPlan.id}">
+								${mealPlan.name}
+								</option>
+							</c:forEach>
+						</select> <input type="submit" value="Add Recipe to an Existing Meal Plan">
+					</form>
+
+
+					<div class="dropdown">
+
+						<%-- <button class="btn btn-secondary dropdown-toggle" type="button"
+						data-bs-toggle="dropdown" aria-expanded="false">Add
+						Recipe to an Existing Meal Plan</button>
+					<ul class="dropdown-menu">
+							<c:forEach var="mealPlan" items="${loggedInUser.mealPlans}">
+								<li><a href="viewMealPlan.do?mealPlanId=${mealPlan.id}">
+										${mealPlan.name}</a></li>
+							</c:forEach>
+					</ul> --%>
+					</div>
+				</div>
 			</c:if>
 
 		</c:when>

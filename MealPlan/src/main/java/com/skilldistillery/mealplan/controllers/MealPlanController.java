@@ -52,7 +52,7 @@ public class MealPlanController {
 //			List<Recipe> foundRecipes = recipeDAO.getMealPlanRecipesList();
 //			model.addAttribute("listOfRecipes", foundRecipes);
 //			viewName = "redirect:viewMealPlan.do?mealPlanId=" + newMealPlan.getId(); 
-			viewName = "viewMealPlan"; 
+			viewName = "viewMealPlan";
 		} else {
 			viewName = "home";
 		}
@@ -71,8 +71,7 @@ public class MealPlanController {
 		}
 		return viewName;
 	}
-	
-	
+
 	@GetMapping("deleteMealPlan.do")
 	public String confirmMealPlanDelete(HttpSession session, @RequestParam("mealPlanId") int mealPlanId, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
@@ -86,7 +85,7 @@ public class MealPlanController {
 		}
 		return viewName;
 	}
-	
+
 	@PostMapping("deleteMealPlan.do")
 	public String deleteMealPlan(HttpSession session, @RequestParam("mealPlanId") int mealPlanId) {
 		User user = (User) session.getAttribute("loggedInUser");
@@ -99,7 +98,7 @@ public class MealPlanController {
 		}
 		return viewName;
 	}
-	
+
 	@RequestMapping("enableMealPlan.do")
 	public String enableRecipe(HttpSession session, @RequestParam("recipeId") int mealPlanId) {
 		User user = (User) session.getAttribute("loggedInUser");
@@ -113,7 +112,7 @@ public class MealPlanController {
 		}
 		return viewName;
 	}
-	
+
 	@GetMapping("updateMealPlan.do")
 	public String retrieveUpdateMealPlan(HttpSession session, @RequestParam("mealPlanId") int mealPlanId, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
@@ -135,9 +134,23 @@ public class MealPlanController {
 		if (user != null) {
 			MealPlan mealPlanUpdated = mealPlanDAO.updateMealPlan(mealPlanId, user, mealPlan);
 			viewName = "redirect:viewMealPlan.do?mealPlanId=" + mealPlanId;
-			
+
 		} else {
 			viewName = "redirect:userProfile";
+		}
+		return viewName;
+	}
+
+	@PostMapping("addRecipeToMealPlan.do")
+	public String addRecipeToMealPlan(Model model, @RequestParam("recipeId") int recipeId, HttpSession session,
+			@RequestParam("mealPlanId") int mealPlanId) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			mealPlanDAO.addToMealPlan(recipeId, user.getId(), mealPlanId);
+			viewName = "redirect:viewMealPlan.do?mealPlanId=" + mealPlanId;
+		}else {
+			viewName = "redirect:viewrecipe.do?recipeId=" + recipeId;
 		}
 		return viewName;
 	}
