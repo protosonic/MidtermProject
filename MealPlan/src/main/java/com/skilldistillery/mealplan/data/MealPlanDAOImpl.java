@@ -63,4 +63,27 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 		return deleted;
 	}
 
+	@Override
+	public boolean enableMealPlan(int mealPlanId, User user) {
+		boolean enabled = false;
+		MealPlan deletedMealPlan = em.find(MealPlan.class, mealPlanId);
+		if (deletedMealPlan != null && deletedMealPlan.getUser().getId() == user.getId()) {
+			deletedMealPlan.setEnabled(true);
+			enabled = true;
+		}
+		return enabled;
+	}
+	
+	@Override
+	public MealPlan updateMealPlan(int mealPlanId, User user, MealPlan mealPlan) {
+		MealPlan updatedMealPlan = em.find(MealPlan.class, mealPlanId);
+		if (updatedMealPlan != null && updatedMealPlan.getUser().getId() == user.getId()) {
+			updatedMealPlan.setName(mealPlan.getName());
+			updatedMealPlan.setDescription(mealPlan.getDescription());
+			updatedMealPlan.setImageURL(mealPlan.getImageURL());
+			updatedMealPlan.setNotes(mealPlan.getNotes());
+			updatedMealPlan.setPublished(mealPlan.getPublished());
+		}
+		return updatedMealPlan;
+	}
 }

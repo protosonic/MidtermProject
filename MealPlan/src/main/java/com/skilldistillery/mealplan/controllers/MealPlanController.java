@@ -99,4 +99,46 @@ public class MealPlanController {
 		}
 		return viewName;
 	}
+	
+	@RequestMapping("enableMealPlan.do")
+	public String enableRecipe(HttpSession session, @RequestParam("recipeId") int mealPlanId) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			mealPlanDAO.enableMealPlan(mealPlanId, user);
+			sessionService.refreshLoggedInUser(session);
+			viewName = "redirect:userProfile.do";
+		} else {
+			viewName = "home";
+		}
+		return viewName;
+	}
+	
+	@GetMapping("updateMealPlan.do")
+	public String retrieveUpdateMealPlan(HttpSession session, @RequestParam("mealPlanId") int mealPlanId, Model model) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		MealPlan mealPlanToUpdate = mealPlanDAO.findMealPlanById(user.getId(), mealPlanId);
+		if (mealPlanToUpdate != null) {
+			model.addAttribute("mealPlan", mealPlanToUpdate);
+			viewName = "updateMealPlan";
+		} else {
+			viewName = "userProfile";
+		}
+		return viewName;
+	}
+
+	@PostMapping("updateMealPlan.do")
+	public String updateMealPlan(HttpSession session, @RequestParam("mealPlanId") int mealPlanId, MealPlan mealPlan) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			MealPlan mealPlanUpdated = mealPlanDAO.updateMealPlan(mealPlanId, user, mealPlan);
+			viewName = "redirect:viewMealPlan.do?mealPlanId=" + mealPlanId;
+			
+		} else {
+			viewName = "redirect:userProfile";
+		}
+		return viewName;
+	}
 }
