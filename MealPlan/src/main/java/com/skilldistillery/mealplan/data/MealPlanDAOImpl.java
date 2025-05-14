@@ -52,4 +52,15 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 		return plan;
 	}
 
+	@Override
+	public boolean deleteMealPlan(int mealPlanId, User user) {
+		boolean deleted = false;
+		MealPlan deleteMealPlan = em.find(MealPlan.class, mealPlanId);
+		if (deleteMealPlan != null && deleteMealPlan.getUser().getId() == user.getId()) {
+			deleteMealPlan.setEnabled(false);
+			deleted = true;
+		}
+		return deleted;
+	}
+
 }

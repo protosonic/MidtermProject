@@ -33,6 +33,7 @@ public class RecipeController {
 		model.addAttribute("recipe", recipeDetails);
 		return "viewrecipe";
 	}
+	
 	@GetMapping("deleteRecipe.do")
 	public String confirmRecipeDelete(HttpSession session, @RequestParam("recipeId") int recipeId, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
@@ -163,4 +164,6 @@ public class RecipeController {
 		}
 		return viewName;
 	}
+	
+	
 }
