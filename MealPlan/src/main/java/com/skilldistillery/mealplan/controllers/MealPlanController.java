@@ -71,4 +71,32 @@ public class MealPlanController {
 		}
 		return viewName;
 	}
+	
+	
+	@GetMapping("deleteMealPlan.do")
+	public String confirmMealPlanDelete(HttpSession session, @RequestParam("mealPlanId") int mealPlanId, Model model) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			MealPlan mealPlan = mealPlanDAO.findMealPlanById(user.getId(), mealPlanId);
+			model.addAttribute("mealPlan", mealPlan);
+			viewName = "deleteMealPlan";
+		} else {
+			viewName = "home";
+		}
+		return viewName;
+	}
+	
+	@PostMapping("deleteMealPlan.do")
+	public String deleteMealPlan(HttpSession session, @RequestParam("mealPlanId") int mealPlanId) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			mealPlanDAO.deleteMealPlan(mealPlanId, user);
+			viewName = "redirect:userProfile.do";
+		} else {
+			viewName = "home";
+		}
+		return viewName;
+	}
 }
