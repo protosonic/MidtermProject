@@ -2,11 +2,14 @@ package com.skilldistillery.mealplan.controllers;
 
 import java.util.List;
 
+import org.apache.logging.log4j.message.AsynchronouslyFormattable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.mealplan.data.MealPlanDAO;
 import com.skilldistillery.mealplan.data.RecipeDAO;
@@ -34,7 +37,7 @@ public class MealPlanController {
 		if (user != null) {
 			viewName = "createNewMealPlan";
 		} else {
-			viewName = "userProfile";
+			viewName = "home";
 		}
 		return viewName;
 	}
@@ -48,11 +51,24 @@ public class MealPlanController {
 			model.addAttribute("mealPlan", newMealPlan);
 //			List<Recipe> foundRecipes = recipeDAO.getMealPlanRecipesList();
 //			model.addAttribute("listOfRecipes", foundRecipes);
-			viewName = "viewMealPlan";
+//			viewName = "redirect:viewMealPlan.do?mealPlanId=" + newMealPlan.getId(); 
+			viewName = "viewMealPlan"; 
 		} else {
-			viewName = "userProfile";
+			viewName = "home";
 		}
 		return viewName;
 	}
 
+	@GetMapping("viewMealPlan.do")
+	public String showMealPlans(HttpSession session, Model model, @RequestParam("mealPlanId") int mealPlanId) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			model.addAttribute("mealPlan", mealPlanDAO.findMealPlanById(user.getId(), mealPlanId));
+			viewName = "viewMealPlan";
+		} else {
+			viewName = "home";
+		}
+		return viewName;
+	}
 }

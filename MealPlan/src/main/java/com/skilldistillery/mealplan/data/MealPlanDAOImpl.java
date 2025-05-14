@@ -13,7 +13,7 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class MealPlanDAOImpl implements MealPlanDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
@@ -28,16 +28,28 @@ public class MealPlanDAOImpl implements MealPlanDAO {
 		return savedMealPlan;
 	}
 
-
-
 	@Override
 	public MealPlan createNewMealPlan(MealPlan newMealPlan, int userId) {
 		User foundOwner = em.find(User.class, userId);
-		if(foundOwner != null && newMealPlan != null) {
+		if (foundOwner != null && newMealPlan != null) {
+			newMealPlan.setEnabled(true);
 			newMealPlan.setUser(foundOwner);
 			em.persist(newMealPlan);
 		}
 		return newMealPlan;
+	}
+
+	@Override
+	public MealPlan findMealPlanById(int userId, int mealPlanId) {
+		String jpql = "SELECT mp FROM MealPlan mp WHERE mp.user.id = :userId AND mp.id = :planId";
+		MealPlan plan = null;
+		try {
+			plan = em.createQuery(jpql, MealPlan.class).setParameter("userId", userId).setParameter("planId", mealPlanId).getSingleResult();
+		} catch (Exception e) {
+//			e.printStackTrace();
+			System.err.println("Meal Plan Not Found For ID:" + mealPlanId);
+		}
+		return plan;
 	}
 
 }
