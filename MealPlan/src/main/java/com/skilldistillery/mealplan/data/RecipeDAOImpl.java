@@ -114,4 +114,10 @@ public class RecipeDAOImpl implements RecipeDAO {
 		return enabled;
 	}
 
+	@Override
+	public List<Recipe> getMealPlanRecipesList() {
+		String jpql = "SELECT r FROM Recipe r JOIN MealPlan mp ON mp.Id = r.Id WHERE r.enabled = true ";
+		return em.createQuery(jpql, Recipe.class).getResultList();
+	}
+
 }
