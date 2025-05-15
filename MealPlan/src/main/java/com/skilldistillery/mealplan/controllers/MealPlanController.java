@@ -97,7 +97,7 @@ public class MealPlanController {
 	}
 
 	@RequestMapping("enableMealPlan.do")
-	public String enableRecipe(HttpSession session, @RequestParam("recipeId") int mealPlanId) {
+	public String enableRecipe(HttpSession session, @RequestParam("mealPlanId") int mealPlanId) {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
 		if (user != null) {
