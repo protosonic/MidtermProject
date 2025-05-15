@@ -62,6 +62,7 @@
     <jsp:include page="nav.jsp" />
 
     <div class="container mt-4">
+
         <!-- Hero / Intro Section -->
         <div class="text-center mb-5">
             <h1 class="display-4 fw-bold text-primary">StackPlates</h1>
