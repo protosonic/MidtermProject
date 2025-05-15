@@ -28,6 +28,7 @@
 	</div>
 	<input type="text" name="imageURL" value="${recipe.imageURL}">
 	<img src="${recipe.imageURL}" alt="Photo of ${recipe.name} " />
+	
 	<div class="row">
 	<label for="isPublished" class="col">Allow Others to View Recipe?</label>
 	<input type="checkbox" name="isPublished" value="true" id="isPublished" class="col" <c:if test='${recipe.published}'>checked</c:if>>
@@ -40,6 +41,7 @@
 	</c:otherwise>
 	</c:choose>
 	</div>
+	
 	<form action="publishedRecipe.do">
 		<label ${recipe.published }> <input type="radio"
 			name="published" value="true">Public <img
@@ -107,14 +109,27 @@
 			<div class="mb-3">
 				<label for="imageURL" class="form-label">Image URL</label>
 				<input type="text" class="form-control" name="imageURL" id="imageURL" value="${recipe.imageURL}">
-				<c:if test="${not empty recipe.imageURL}">
+				<%-- <c:if test="${not empty recipe.imageURL}">
 					<div class="mt-2">
 						<img src="${recipe.imageURL}" alt="Photo of ${recipe.name}" class="img-fluid rounded" style="max-width: 300px;">
 					</div>
-				</c:if>
+				</c:if> --%>
 			</div>
+		<div class="row">
+			<label for="isPublished" class="col">Make this recipe public</label> 
+				<input type="checkbox" name="isPublished" value="true"
+				id="isPublished" class="col"
+				<c:if test='${recipe.published}'>checked</c:if>>
+			<c:choose>
+				<c:when test="${recipe.published }"></c:when>
+				
+				<c:otherwise>
+					<!-- <input type="checkbox" name="published" value="false" id="published" class="col"> -->
+				</c:otherwise>
+			</c:choose>
+		</div>
 
-			<div class="mb-3">
+		<div class="mb-3">
 				<label for="ingredients" class="form-label">Ingredients</label>
 				<textarea class="form-control" name="ingredients" id="ingredients" rows="4">${recipe.ingredients}</textarea>
 			</div>

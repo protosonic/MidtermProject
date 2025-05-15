@@ -1,0 +1,115 @@
+/* Container that scrolls horizontally */
+.scrolling-recipes {
+	display: flex;
+	overflow-x: auto;
+	padding: 1rem 0;
+	gap: 1rem;
+	scrollbar-width: thin;
+	scrollbar-color: #888 transparent;
+}
+
+/* Webkit scrollbar support */
+.scrolling-recipes::-webkit-scrollbar {
+	height: 8px;
+}
+
+.scrolling-recipes::-webkit-scrollbar-thumb {
+	background-color: #555;
+	border-radius: 4px;
+}
+
+.scrolling-recipes::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+/* Individual cards */
+.scroll-card {
+	flex: 0 0 auto;
+	width: 250px;
+	background-color: rgba(51, 123, 250, 0.25);
+	color: #f0f0f0;
+	border: 1px solid #444;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+	transition: transform 0.2s ease;
+}
+
+.scroll-card:hover {
+	transform: translateY(-4px);
+}
+
+.scroll-card img {
+	width: 100%;
+	height: 160px;
+	object-fit: cover;
+}
+
+.scroll-card .card-body {
+	padding: 1rem;
+}
+
+.scroll-card a {
+	color: #80d0ff;
+	text-decoration: none;
+}
+
+.scroll-card a:hover {
+	text-decoration: underline;
+}
+
+.scrolling-mealplans {
+	display: flex;
+	overflow-x: auto;
+	gap: 1rem;
+	padding-bottom: 0.5rem;
+	scroll-behavior: smooth;
+}
+
+.scrolling-mealplans::-webkit-scrollbar {
+	height: 8px;
+}
+
+.scrolling-mealplans::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 4px;
+}
+
+.scrolling-mealplans::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+.scroll-card {
+	flex: 0 0 auto;
+	/* prevents shrinking and makes width based on content */
+	width: 250px; /* or whatever width fits your design */
+}
+.scrolling-recipes,
+.scrolling-mealplans {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+  scroll-behavior: smooth;
+}
+
+.scrolling-recipes::-webkit-scrollbar,
+.scrolling-mealplans::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scrolling-recipes::-webkit-scrollbar-thumb,
+.scrolling-mealplans::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.scrolling-recipes::-webkit-scrollbar-track,
+.scrolling-mealplans::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scroll-card {
+  flex: 0 0 auto;
+  width: 250px;
+}

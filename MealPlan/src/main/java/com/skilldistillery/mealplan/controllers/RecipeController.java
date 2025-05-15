@@ -25,15 +25,18 @@ public class RecipeController {
 	private RecipeDAO recipeDAO;
 	@Autowired
 	private SessionService sessionService;
-	
 
 	@GetMapping("viewrecipe.do")
-	public String showRecipe(Model model, @RequestParam("recipeId") int recipeId) {
+	public String showRecipe(Model model, HttpSession session, @RequestParam("recipeId") int recipeId) {
 		Recipe recipeDetails = recipeDAO.getRecipeDetails(recipeId);
 		model.addAttribute("recipe", recipeDetails);
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user != null) {
+			sessionService.refreshLoggedInUser(session);
+		}
 		return "viewrecipe";
 	}
-	
+
 	@GetMapping("deleteRecipe.do")
 	public String confirmRecipeDelete(HttpSession session, @RequestParam("recipeId") int recipeId, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
@@ -47,7 +50,6 @@ public class RecipeController {
 		}
 		return viewName;
 	}
-	
 
 	@PostMapping("deleteRecipe.do")
 	public String deleteRecipe(HttpSession session, @RequestParam("recipeId") int recipeId) {
@@ -76,19 +78,19 @@ public class RecipeController {
 	}
 
 	@PostMapping("updateRecipe.do")
-	public String updateRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Recipe recipe, @RequestParam(name="isPublished",defaultValue="false") boolean isPublished) {
+	public String updateRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Recipe recipe,
+			@RequestParam(name = "isPublished", defaultValue = "false") boolean isPublished) {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
 		if (user != null) {
 			if (isPublished) {
 				recipe.setPublished(true);
-			}
-			else {
+			} else {
 				recipe.setPublished(false);
 			}
 			Recipe recipeUpdated = recipeDAO.updateRecipe(recipeId, user, recipe);
 			viewName = "redirect:viewrecipe.do?recipeId=" + recipeId;
-			
+
 		} else {
 			viewName = "redirect:viewrecipes";
 		}
@@ -108,7 +110,7 @@ public class RecipeController {
 		}
 		return viewName;
 	}
-	
+
 	@PostMapping("saveRecipe.do")
 	public String saveRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Model model, Recipe recipe) {
 		User user = (User) session.getAttribute("loggedInUser");
@@ -122,41 +124,43 @@ public class RecipeController {
 		}
 		return viewName;
 	}
-	
+
 	@PostMapping("viewRecipesByKeyword.do")
-	public String viewRecipesByKeyword(HttpSession session, Model model, @RequestParam("recipeKeyword") String nameKeyword, @RequestParam("recipeKeyword") String ingredientKeyword) {
+	public String viewRecipesByKeyword(HttpSession session, Model model,
+			@RequestParam("recipeKeyword") String nameKeyword,
+			@RequestParam("recipeKeyword") String ingredientKeyword) {
 		List<Recipe> foundRecipes = recipeDAO.findRecipeByKeyword(nameKeyword, ingredientKeyword);
 		model.addAttribute("listOfRecipes", foundRecipes);
 		sessionService.refreshLoggedInUser(session);
 		return "viewall";
 	}
-	
+
 	@GetMapping("createNewRecipe.do")
 	public String retrieveNewRecipeForm(HttpSession session, Model model, Recipe recipe) {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
-		if(user != null) {
-		viewName = "createNewRecipe";
+		if (user != null) {
+			viewName = "createNewRecipe";
 		} else {
-		viewName = "userProfile";
+			viewName = "userProfile";
 		}
 		return viewName;
 	}
-	
+
 	@PostMapping("createNewRecipe.do")
 	public String createNewRecipe(HttpSession session, Model model, Recipe recipe) {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
-		if(user != null) {
-		recipeDAO.createNewRecipe(recipe, user.getId());
-		int recipeId = recipe.getId();
-		viewName = "redirect:viewrecipe.do?recipeId=" + recipeId;
+		if (user != null) {
+			recipeDAO.createNewRecipe(recipe, user.getId());
+			int recipeId = recipe.getId();
+			viewName = "redirect:viewrecipe.do?recipeId=" + recipeId;
 		} else {
-		viewName = "userProfile";
+			viewName = "userProfile";
 		}
 		return viewName;
 	}
-	
+
 	@RequestMapping("enableRecipe.do")
 	public String enableRecipe(HttpSession session, @RequestParam("recipeId") int recipeId) {
 		User user = (User) session.getAttribute("loggedInUser");
@@ -170,6 +174,7 @@ public class RecipeController {
 		}
 		return viewName;
 	}
+
 	@RequestMapping("publishedRecipe.do")
 	public String publishedRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Model model) {
 		User user = (User) session.getAttribute("loggedInUser");
@@ -184,6 +189,5 @@ public class RecipeController {
 		}
 		return viewName;
 	}
-	
-	
+
 }

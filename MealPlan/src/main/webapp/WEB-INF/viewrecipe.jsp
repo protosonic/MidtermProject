@@ -137,6 +137,19 @@
                         <p><strong>Date Published:</strong> ${recipe.dateCreated}</p>
                         <p><strong>Last Updated:</strong> ${recipe.dateUpdated}</p>
 
+						<c:choose>
+							<c:when test="${not recipe.published }">
+								<p>
+									<img src="images/privateIcon.png" alt="Private Icon" class="published-icon"><span>Private</span>
+								</p>
+							</c:when>
+							<c:otherwise>
+								<p>
+									<img src="images/publicIcon.png" alt="Public Icon" class="published-icon"><span>Public</span>
+								</p>
+							</c:otherwise>
+					   </c:choose>
+
                         <h3>Ingredients</h3>
                         <pre class="bg-light p-3 rounded border">${recipe.ingredients}</pre>
 

@@ -213,8 +213,8 @@ pre {
     height: auto;
 }
 
-/* === Dark Mode: Featured Recipe === */
-.featured-recipe {
+
+#featured-recipe {
   float: left;
   width: 45%;
   margin: 2rem;
@@ -224,7 +224,7 @@ pre {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
   font-family: inherit;
-  color: white;
+  color: #007bff;
 }
 
 .featured-recipe h2 {
