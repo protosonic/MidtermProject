@@ -76,10 +76,16 @@ public class RecipeController {
 	}
 
 	@PostMapping("updateRecipe.do")
-	public String updateRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Recipe recipe) {
+	public String updateRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Recipe recipe, @RequestParam(name="isPublished",defaultValue="false") boolean isPublished) {
 		User user = (User) session.getAttribute("loggedInUser");
 		String viewName = "";
 		if (user != null) {
+			if (isPublished) {
+				recipe.setPublished(true);
+			}
+			else {
+				recipe.setPublished(false);
+			}
 			Recipe recipeUpdated = recipeDAO.updateRecipe(recipeId, user, recipe);
 			viewName = "redirect:viewrecipe.do?recipeId=" + recipeId;
 			
@@ -157,6 +163,20 @@ public class RecipeController {
 		String viewName = "";
 		if (user != null) {
 			recipeDAO.enableRecipe(recipeId, user);
+			sessionService.refreshLoggedInUser(session);
+			viewName = "redirect:userProfile.do";
+		} else {
+			viewName = "home";
+		}
+		return viewName;
+	}
+	@RequestMapping("publishedRecipe.do")
+	public String publishedRecipe(HttpSession session, @RequestParam("recipeId") int recipeId, Model model) {
+		User user = (User) session.getAttribute("loggedInUser");
+		String viewName = "";
+		if (user != null) {
+			boolean published = recipeDAO.publishedRecipe(recipeId, user);
+			model.addAttribute("published", published);
 			sessionService.refreshLoggedInUser(session);
 			viewName = "redirect:userProfile.do";
 		} else {

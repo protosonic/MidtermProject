@@ -16,5 +16,7 @@ public interface RecipeDAO {
 	Recipe createNewRecipe(Recipe newRecipe, int userId);
 	boolean enableRecipe(int recipeId, User user);
 	List<Recipe> getMealPlanRecipesList();
+	boolean publishedRecipe(int recipeId, User user);
+	
 
 }

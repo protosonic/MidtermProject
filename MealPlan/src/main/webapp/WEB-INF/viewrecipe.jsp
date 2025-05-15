@@ -18,7 +18,18 @@
 			</p>
 			<p>Date Published: ${recipe.dateCreated}</p>
 			<p>Last Updated: ${recipe.dateUpdated}</p>
-			<%-- <p>${recipe.published }</p> --%>
+			<c:choose>
+				<c:when test="${not recipe.published }">
+					<p>
+						<img src="images/privateIcon.png" alt="Private Icon" class="published-icon"><span>Private</span>
+					</p>
+				</c:when>
+				<c:otherwise>
+					<p>
+						<img src="images/publicIcon.png" alt="Public Icon" class="published-icon"><span>Public</span>
+					</p>
+				</c:otherwise>
+			</c:choose>
 
 			<h3>Ingredients</h3>
 			<!-- We need to add multiple ingredients and see hwo they populate -->
@@ -57,20 +68,16 @@
 				<div>
 					<form action="addRecipeToMealPlan.do" method="POST">
 						<input type="hidden" name="recipeId" value="${recipe.id}">
-						
+
 						<select name="mealPlanId">
 							<c:forEach var="mealPlan" items="${loggedInUser.mealPlans}">
-								<option value="${mealPlan.id}">
-								${mealPlan.name}
-								</option>
+								<option value="${mealPlan.id}">${mealPlan.name}</option>
 							</c:forEach>
 						</select> <input type="submit" value="Add Recipe to an Existing Meal Plan">
 					</form>
 
 
-					<div class="dropdown">
-
-					</div>
+					<div class="dropdown"></div>
 				</div>
 			</c:if>
 
