@@ -1,0 +1,214 @@
+@charset "UTF-8";
+
+
+/* === General Reset & Typography === */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+  padding-bottom: 3rem;
+  margin: 0;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.lead {
+  font-size: 1.25rem;
+  color: #555;
+}
+
+/* === Navbar === */
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navbar a {
+  color: black;
+  margin-right: 1rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar a:hover {
+  color: #007bff;
+}
+
+/* === Search Bar === */
+#search-bar {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 10px;
+  
+}
+
+#search-bar input {
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+}
+.btn-outline-success {
+  color: #007bff;             /* green text */
+  border-color: #007bff;       /* green border */
+  background-color: transparent;
+}
+
+.btn-outline-success:hover {
+  color: white;             /* green text */
+  border-color: white;       /* green border */
+  background-color: #007bff;
+}
+
+
+
+/* === Hero Banner === */
+.hero-banner {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: white;
+  padding: 3rem 1rem;
+  border-radius: 8px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+/* === Buttons === */
+.action-buttons .btn {
+  margin: 5px;
+  border-radius: 25px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.action-buttons .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* === Section Styling === */
+section {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+}
+
+/* === Latest Recipes Grid === */
+.latest-recipes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.recipe-item {
+  background: white;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 200px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+  transition: box-shadow 0.2s;
+}
+
+.recipe-item:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.recipe-item img {
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.recipe-item a {
+  text-align: center;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.recipe-item a:hover {
+  text-decoration: underline;
+}
+
+/* === Image Defaults === */
+img {
+  height: auto;
+  width: 40%;
+  float: left;
+}
+
+/* === Specific Image Sizes === */
+.recipeListImage {
+  height: 10vh;
+  width: auto;
+  float: none;
+  display: block;
+  margin: 0 auto 0.5rem auto;
+  border-radius: 5px;
+}
+
+.mealPlanListImage {
+  height: 10vh;
+  width: auto;
+  float: none;
+  display: block;
+  margin: 0 auto 0.5rem auto;
+  border-radius: 5px;
+}
+
+/* === Featured Cards (for Top Recipes / Meals) === */
+.recipe-card {
+  max-width: 300px;
+  margin: 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+/* === Preformatted Text === */
+pre {
+  font-family: sans-serif;
+  white-space: pre-wrap;
+}
+
+.featured-recipe {
+    display: flex;
+    flex-direction: column;
+}
+.featured-recipe img {
+    margin-top: 1rem;
+    max-width: 100%;
+    height: auto;
+}
