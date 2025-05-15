@@ -5,7 +5,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  background-color: rgb(53, 53, 53);
+  background-color: white;
   color: #333;
   padding-bottom: 3rem;
   margin: 0;
@@ -59,13 +59,13 @@ h1, h2, h3 {
   border-radius: 4px;
 }
 .btn-outline-success {
-  color: #007bff;             /* green text */
-  border-color: #007bff;       /* green border */
+  color: #007bff;           
+  border-color: #007bff;       
   background-color: transparent;
 }
 
 .btn-outline-success:hover {
-  color: white;             /* green text */
+  color: white;           
   border-color: white;       /* green border */
   background-color: #007bff;
 }
@@ -212,3 +212,26 @@ pre {
     max-width: 100%;
     height: auto;
 }
+
+/* === Dark Mode: Featured Recipe === */
+.featured-recipe {
+  float: left;
+  width: 45%;
+  margin: 2rem;
+  padding: 1.5rem;
+  background-color: #90D5FF;
+  border: 1px solid #444;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
+  font-family: inherit;
+  color: white;
+}
+
+.featured-recipe h2 {
+  color: black;
+}
+
+.featured-recipe p {
+  color: black;
+}
+
