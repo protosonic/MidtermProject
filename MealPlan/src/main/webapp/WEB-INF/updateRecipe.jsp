@@ -22,12 +22,32 @@
 		</c:otherwise>
 	</c:choose>
 	<input type="hidden" name="recipeId" value="${recipe.id }" />
-	<input type="text" name="name" value="${recipe.name}">
-	<input type="text" name="imageURL" value="${recipe.imageURL}"
-		<img src="${recipe.imageURL}" alt="Photo of ${recipe.name} "/>>
-	<!-- How will it atuomatically update the date? -->
-
-	<%-- <p>${recipe.published }</p> --%>
+	<div class="row">
+	<label for="name" class="col">Name</label>
+	<input type="text" name="name" value="${recipe.name}" id="name" class="col">
+	</div>
+	<input type="text" name="imageURL" value="${recipe.imageURL}">
+	<img src="${recipe.imageURL}" alt="Photo of ${recipe.name} " />
+	<div class="row">
+	<label for="isPublished" class="col">Allow Others to View Recipe?</label>
+	<input type="checkbox" name="isPublished" value="true" id="isPublished" class="col" <c:if test='${recipe.published}'>checked</c:if>>
+	<c:choose>
+	<c:when test="${recipe.published }">
+	</c:when>
+	<c:otherwise>
+	<!-- <input type="checkbox" name="published" value="false" id="published" class="col"> -->
+	
+	</c:otherwise>
+	</c:choose>
+	</div>
+	<%-- <form action="publishedRecipe.do">
+		<label ${recipe.published }> <input type="radio"
+			name="published" value="true">Public <img
+			src="images/publicIcon.png" alt="public Icon"> <input
+			type="radio" name="published" value="false">Private <img
+			src="images/privateIcon.png" alt="private Icon">
+		</label>
+	</form> --%>
 	<div>
 		<h3>Ingredients</h3>
 		<textarea name="ingredients">${recipe.ingredients}</textarea>
@@ -48,8 +68,7 @@
 			<input type="submit" value="Save Recipe">
 		</c:when>
 		<c:otherwise>
-
-	<input type="submit" value="Update Edited Recipe">
+			<input type="submit" value="Update Edited Recipe">
 		</c:otherwise>
 	</c:choose>
 	</form>

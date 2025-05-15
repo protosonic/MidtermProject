@@ -97,6 +97,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 		if (user != null) {
 			newRecipe.setUser(user);
 			newRecipe.setEnabled(true);
+			newRecipe.setPublished(true);
 			em.persist(newRecipe);
 			return newRecipe;
 		}
@@ -118,6 +119,18 @@ public class RecipeDAOImpl implements RecipeDAO {
 	public List<Recipe> getMealPlanRecipesList() {
 		String jpql = "SELECT r FROM Recipe r JOIN MealPlan mp ON mp.Id = r.Id WHERE r.enabled = true ";
 		return em.createQuery(jpql, Recipe.class).getResultList();
+	}
+
+	@Override
+	public boolean publishedRecipe(int recipeId, User user) {
+		boolean published = false;
+		Recipe publishedRecipe = em.find(Recipe.class, recipeId);
+		if (publishedRecipe != null && publishedRecipe.getUser().getId() == user.getId()) {
+			publishedRecipe.setPublished(false);
+			published = true;
+		}
+		return published;
+		
 	}
 
 }
