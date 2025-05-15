@@ -42,3 +42,89 @@ pre{
 	width: auto;
 	float:none;
 }
+.featured-recipe {
+  float: left;
+  width: 300px;
+  margin: 20px;
+  padding: 15px;
+  background-color: #fffaf5;
+  border: 1px solid #e0dcd5;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.featured-recipe img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.featured-recipe h3 h4 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.featured-recipe p {
+  margin: 0;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.create-account-form {
+  float: right;
+  width: 600px;
+  margin: 20px;
+  padding: 15px;
+  background-color: #f5fbff;
+  border: 1px solid #d4e4f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.create-account-form h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #2b4a60;
+}
+
+.create-account-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+.create-account-form input[type="text"],
+.create-account-form input[type="username"],
+.create-account-form input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #c0d3e0;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.create-account-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #3a91d8;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-account-form button:hover {
+  background-color: #327cba;
+}
+
+
+
+
