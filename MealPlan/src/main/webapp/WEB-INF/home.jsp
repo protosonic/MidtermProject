@@ -90,9 +90,7 @@
                     <div class="mb-3">
                         <h3 class="text-success">Featured Recipe</h3>
                         <h4>
-                            <a href="images/gumboRecipe.jpg" class="text-decoration-none text-dark fw-semibold">
-                                Best Gumbo Recipe
-                            </a>
+                            <a href="viewrecipe.do?recipeId=2" class="text-decoration-none text-dark fw-semibold">Bayou's Best Gumbo Recipe</a>
                         </h4>
                         <p>
                             This incredible Gumbo recipe is bursting with the flavors of the bayou!
@@ -101,7 +99,7 @@
                         </p>
                     </div>
                     <div>
-                        <img class="homepageImg img-fluid rounded" src="images/MealPlanStock.jpg" alt="Best Gumbo Recipe">
+                        <img class="homepageImg img-fluid rounded" src="images/gumboRecipe.jpg" alt="Best Gumbo Recipe">
                     </div>
                 </div>
             </div>
