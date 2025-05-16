@@ -45,7 +45,7 @@ In short, Stackplates offers a streamlined solution for anyone looking to take t
 - JPQL
 - Debugging
 
-![StackPlates Database](MidtermProject/DB/MealPlandb.sql.png "StackPlates Database")
+![StackPlates Database](file:///Users/jayyoon/SD/Java/MidtermProject/DB/MealPlandb.sql.png "StackPlates Database")
 
 
 ## Lessons learned
