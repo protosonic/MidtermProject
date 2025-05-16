@@ -31,7 +31,6 @@ In short, Stackplates offers a streamlined solution for anyone looking to take t
 - Git
 - Github
 - zsh
-- 
 
 ## Concepts applied
 - Object Oriented Java Programming 
@@ -45,7 +44,7 @@ In short, Stackplates offers a streamlined solution for anyone looking to take t
 - JPQL
 - Debugging
 
-![StackPlates Database](file:///Users/jayyoon/SD/Java/MidtermProject/DB/MealPlandb.sql.png "StackPlates Database")
+![StackPlates Database](https://github.com/protosonic/MidtermProject/blob/main/DB/MealPlandb.sql.png "StackPlates Database")
 
 
 ## Lessons learned
